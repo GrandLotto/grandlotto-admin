@@ -1,0 +1,265 @@
+@import "../../assets/css/colors.scss";
+
+.paymentGateWay {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.payment_card h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  color: #3d3c3c;
+  margin-bottom: 0px;
+  padding-top: 10px;
+}
+
+.paymentGateWayGrid {
+  display: block;
+  margin-top: 40px;
+}
+
+.paymentGateWayGridInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 30px;
+}
+
+.paymentGateWayGridItem {
+  position: relative;
+  display: block;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.paymentGateWayGridItem.selectedGateway .selectedIcon {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+
+.paymentGateWayGridItem.selectedGateway .selectedIcon i {
+  font-size: 19px;
+  color: #03802f;
+}
+
+.paymentGateWayGridItem img {
+  width: 130px;
+}
+
+.paymentGateWayGridItemContent {
+  text-align: left;
+  margin-top: 15px;
+  // margin-left: 30px;
+}
+
+.paymentGateWayGridItem p {
+  margin-top: 15px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 17px;
+  margin-bottom: 6px;
+}
+
+.showAccount {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.showAccount i {
+  background: $primaryLightLight;
+  color: $primary;
+  padding: 25px;
+  border-radius: 50%;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.showAccount h5 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  color: #282828;
+  margin-bottom: 20px;
+}
+
+.showAccountBox {
+  display: inline-block;
+  margin-top: 30px;
+  border: 1.9px solid $primary;
+  padding: 30px 100px;
+  border-radius: 7px;
+}
+
+.showAccountBox h6 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: #282828;
+}
+
+.showAccountBox h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  color: $primary;
+  margin: 20px 0px 30px;
+}
+
+.showAccountBox p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 10px;
+  color: #282828;
+}
+
+@media screen and (max-width: 1100px) {
+  .paymentGateWayGridItem {
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 900px) {
+  // .paymentGateWayGrid {
+  //   flex-wrap: wrap;
+  // }
+
+  .paymentGateWayGrid {
+    column-gap: 20px;
+  }
+
+  .paymentGateWayGridItem h6 {
+    line-height: 17px;
+    margin-top: 9px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .paymentGateWayGridItem {
+    display: block;
+  }
+
+  .paymentGateWayGridItem h6 {
+    display: none;
+  }
+
+  .paymentGateWayGridItemContent {
+    margin-top: 10px;
+    margin-left: 0px;
+    padding-right: 70px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  // .paymentGateWayGrid {
+  //   flex-wrap: wrap;
+  // }
+
+  .grandlotto_card.payment_card {
+    padding: 10px 0px;
+  }
+
+  .paymentGateWay {
+    margin-top: 20px;
+  }
+
+  .payment_card h5 {
+    padding-left: 10px;
+    font-size: 17px;
+    margin-bottom: 0px;
+  }
+
+  .paymentGateWayGrid {
+    padding: 10px 30px 10px 30px;
+  }
+
+  .paymentGateWayGridItemImg {
+    display: inline-block;
+    background: #fff;
+    padding: 10px;
+  }
+
+  .paymentGateWayGridItem img {
+    width: 100px;
+  }
+
+  .paymentGateWayGridItem h6 {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 17px;
+  }
+
+  .grandlotto_card.payment_card .grandlotto_form {
+    padding: 10px 20px;
+  }
+
+  .showAccount i {
+    font-size: 30px;
+  }
+
+  .showAccount h5 {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .showAccountBox {
+    width: 100%;
+    display: block;
+    padding: 30px 10px;
+  }
+
+  .showAccountBox h6 {
+    font-size: 17px;
+    line-height: 21px;
+  }
+
+  .showAccountBox h3 {
+    font-size: 32px;
+    line-height: 30px;
+  }
+
+  .showAccountBox p {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .showAccount .grandLottoButton.cardButton {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .paymentGateWayGrid {
+    padding: 10px;
+    margin-top: 0px;
+  }
+
+  .paymentGateWayGridInner {
+    // display: block;
+    border-bottom: 1px solid #fff;
+    padding: 20px 10px;
+  }
+
+  .paymentGateWayGridItem {
+    margin-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .paymentGateWayGridItem p {
+    display: none;
+  }
+
+  .payment_card h5 {
+    color: #fff;
+  }
+}

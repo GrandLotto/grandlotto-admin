@@ -1,0 +1,784 @@
+@import "../../assets/css/colors.scss";
+
+.alert-modal .alert-modal-card input:-webkit-autofill,
+.alert-modal .alert-modal-card input:-webkit-autofill:hover,
+.alert-modal .alert-modal-card input:-webkit-autofill:focus,
+.alert-modal .alert-modal-card textarea:-webkit-autofill,
+.alert-modal .alert-modal-card textarea:-webkit-autofill:hover,
+.alert-modal .alert-modal-card textarea:-webkit-autofill:focus,
+.alert-modal .alert-modal-card select:-webkit-autofill,
+.alert-modal .alert-modal-card select:-webkit-autofill:hover,
+.alert-modal .alert-modal-card select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px darken($color: $primaryDark, $amount: 20%)
+    inset !important;
+  box-shadow: 0 0 0px 1000px darken($color: $primaryDark, $amount: 20%) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  color: #fff !important;
+}
+
+/* MODALS */
+.hideModal {
+  display: none;
+}
+
+.modalButton {
+  width: 100% !important;
+  padding: 0px !important;
+}
+
+.modalButton button {
+  width: 100% !important;
+  padding: 0px !important;
+}
+
+.smallPopup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 549970 !important;
+  background: $primaryLightLight;
+  border: 2px solid #fff;
+  padding: 14px 20px;
+  border-radius: 5px;
+  transition: all 400ms ease-in-out;
+  transform: translateY(-1400%);
+  cursor: pointer;
+}
+
+/* body.dark-mode .smallPopup {
+  background: var(--mainGreenColor) !important;
+  border: 2px solid var(--mainCardDarkMode);
+} */
+
+.showSmallPopup {
+  transform: translateY(0);
+}
+
+.smallPopup p {
+  align-items: center;
+  margin: 0px;
+  font-size: 13px;
+  font-weight: 550;
+  color: #201f1f;
+}
+
+.select_modals {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  z-index: 401 !important;
+  transition: 800ms ease;
+}
+
+.select_modals_overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(246, 245, 245, 0.206);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 402 !important;
+  transition: 800ms ease;
+  cursor: pointer;
+}
+
+.select_modals_cards {
+  position: relative !important;
+  background: #fff;
+  color: #222;
+  width: 400px;
+  margin-left: auto;
+  height: 100% !important;
+  display: block;
+  /* border-radius: 30px; */
+  box-shadow: 3px 6px 10px 0 rgb(0 102 245 / 7%);
+  z-index: 501 !important;
+  animation-name: slideInRight;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  /* padding-bottom: 40px; */
+}
+
+.higherModal {
+  z-index: 4000001 !important;
+}
+
+.select_modals_cards.slideOUT {
+  animation-name: slideOutLeft;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+.select-modal-header {
+  width: 100%;
+  background: #fff;
+  color: #222;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  z-index: 20;
+}
+
+.select-modal-header h5 {
+  margin: 0px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.select-modal-header i {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.select_modals_body {
+  position: relative;
+  height: 100% !important;
+  width: 100% !important;
+  display: block;
+  overflow-y: scroll;
+  padding: 10px;
+  padding-bottom: 80px;
+  padding: 40px 13px;
+}
+
+.select_modals_body::-webkit-scrollbar {
+  width: 0px;
+}
+
+.select_modals_body label {
+  color: #333 !important;
+}
+
+.select_modals_body select,
+.select_modals_body select:focus,
+.select_modals_body textarea,
+.select_modals_body textarea:focus,
+.select_modals_body input:focus,
+.select_modals_body input {
+  box-shadow: none !important;
+}
+
+// .select_modals_body select,
+// .select_modals_body select:focus,
+// .select_modals_body textarea,
+// .select_modals_body textarea:focus,
+// .select_modals_body input:focus,
+// .select_modals_body input {
+//   background: darken($color: $primaryDark, $amount: 20%);
+//   color: #fff !important;
+// }
+
+// .select_modals_body .card,
+// .select_modals_body .card-body,
+// .select_modals_body .card-header {
+//   background: lighten($color: $primaryDark, $amount: 10%);
+//   color: #fff !important;
+// }
+
+.modalTitle {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 29px;
+  line-height: 43px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+.selectModalitem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+      0deg,
+      rgba(221, 221, 221, 0.2),
+      rgba(221, 221, 221, 0.2)
+    ),
+    #ffffff;
+  border: 3.41431px solid #ffffff;
+  box-shadow: 0px 4.55241px 10.2429px 1.1381px rgba(154, 154, 154, 0.25);
+  border-radius: 14.7953px;
+  padding: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.selectModalitemLeft {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.selectModalitem img {
+  width: 40px;
+}
+
+.selectModalitem p {
+  /* margin-left: -140px; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 30px;
+  color: #000000;
+  text-align: left;
+}
+
+.selectModalitem .checkDiv {
+  width: 25.04px;
+  height: 25.04px;
+  border: 1.1381px solid #000000;
+  border-radius: 5.69052px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectModalitem .checkDiv.selectedItem {
+  background: #000;
+}
+
+.selectModalitem .checkDiv i {
+  color: #ffffff;
+  font-size: 13px;
+}
+
+/* Alert Modal */
+.alert-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(58, 56, 56, 0.507); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 9900;
+  transition: 800ms ease;
+}
+
+.alert-modal.alertPOP {
+  z-index: 9990;
+}
+
+.alert-modal.alertPOP.overAll {
+  z-index: 9995;
+}
+
+.alert-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 46, 49, 0.918);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 9910;
+  transition: 800ms ease;
+  cursor: pointer;
+}
+
+.alert-modal.alertPOP .alert-modal-overlay {
+  z-index: 9991;
+}
+
+.alert-modal.alertPOP.overAll .alert-modal-overlay {
+  z-index: 9996;
+}
+
+.alert-modal-card {
+  position: relative;
+  background: $primaryDark;
+  // background: darken($color: $primaryDark, $amount: 20%);
+  color: #fff !important;
+  width: 390px;
+  height: auto;
+  padding: 17px 19px;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 3px 6px 10px 0 rgb(0 102 245 / 7%);
+  z-index: 9940;
+}
+
+.alertPOP .alert-modal-card {
+  width: 720px;
+  height: auto;
+  z-index: 9994;
+}
+
+.alert-modal.overAll .alert-modal-card {
+  width: 400px;
+}
+
+.alert-modal.overAll .alert-modal-card .alert-modal-body h4 {
+  font-size: 20px;
+}
+
+.alert-modal.overAll .alert-modal-body p {
+  font-size: 16px;
+}
+
+#loginModal.alertPOP .alert-modal-card {
+  width: 520px;
+}
+
+.alertPOP.overAll .alert-modal-card {
+  z-index: 9997;
+}
+
+.alert-modal-card .close-alert-button {
+  text-align: right;
+}
+
+.alert-modal-card .close-alert-button i {
+  font-size: 27px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.alert-modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.large_modal .alert-modal-card {
+  width: 620px;
+  padding-bottom: 0px;
+}
+
+.large_modal .alert-modal-body {
+  // height: 590px;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  padding-bottom: 30px;
+}
+
+.large_modal.small_modal .alert-modal-body {
+  height: 420px;
+}
+.large_modal .alert-modal-body::-webkit-scrollbar {
+  width: 0px;
+}
+
+.large_modal .alert-modal-body {
+  display: block;
+  /* flex-direction: column;
+      justify-content: center;
+      align-items: center; */
+}
+.large_modal.center_modal .alert-modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert-modal-body .alert-modal-icon {
+  background: rgb(5, 233, 5);
+  color: #fff;
+  width: 60.22px;
+  height: 60px;
+  line-height: normal;
+  border-radius: 50%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.alertPOP .alert-modal-body .alert-modal-icon {
+  width: 75px;
+  height: 75px;
+  line-height: normal;
+}
+
+.alertPOP .alert-modal-body .alert-modal-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.alert-modal-body .alert-modal-icon.error {
+  background: #d70000;
+}
+
+.alert-modal-body .alert-modal-icon i {
+  font-size: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.alertPOP .alert-modal-body .alert-modal-icon i {
+  font-size: 40px;
+}
+
+.alert-modal .alert-modal-body h4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: -0.382609px;
+
+  margin-bottom: 12px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.alert-modal .alert-modal-body p.p_para {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: -0.382609px;
+  margin-bottom: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+/* 
+  .alert-modal .alert-modal-body h4.success {
+    color: rgb(30, 179, 0);
+  } */
+
+.alert-modal .alert-modal-body h4.error {
+  color: rgb(170, 16, 5);
+}
+
+.alert-modal .alert-modal-body p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.382609px;
+  width: 79%;
+  margin: 4px auto 15px;
+}
+
+.alert-modal .alert-modal-body .alert-modal-button {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.alert-modal .alert-modal-body .alert-modal-button button {
+  padding: 10px 80px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: all 300ms ease-in-out;
+}
+
+.alert-modal .alert-modal-body .alert-modal-button button.green-button {
+  padding: 10px 100px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.alert-modal .alert-modal-body .alert-modal-button button:hover {
+  transform: scale(0.9);
+}
+
+button.white-button {
+  background: #fff;
+  color: #1e1d1d;
+  border: 1px solid var(--mainYellowColor);
+  margin-right: 16px;
+}
+
+.alertPOP.large_modal .alert-modal-card {
+  // position: fixed !important;
+  // bottom: 50px !important;
+  // left: 0px !important;
+  // width: 50% !important;
+  height: 90% !important;
+  padding: 0px !important;
+  margin-top: 40px;
+  // margin-bottom: 40px;
+  overflow-y: hidden;
+  padding-top: 20px !important;
+}
+
+.alertPOP.large_modal.large_auto_height_modal .alert-modal-card {
+  height: auto !important;
+  // overflow-y: scroll;
+}
+
+.alertPOP.large_modal .alert-modal-card .grandlotto_form {
+  width: 100% !important;
+  height: 100vh !important;
+
+  overflow-y: scroll !important;
+  padding: 20px !important;
+  padding-bottom: 190px !important;
+}
+
+.alertPOP.large_modal .alert-modal-card .grandlotto_form::-webkit-scrollbar {
+  width: 5px;
+}
+
+.alertPOP.large_modal.noscrollBar
+  .alert-modal-card
+  .grandlotto_form::-webkit-scrollbar {
+  width: 0px !important;
+}
+
+.alertPOP.large_modal.large_auto_height_modal
+  .alert-modal-card
+  .grandlotto_form {
+  height: auto !important;
+  padding-bottom: 30px !important;
+  // overflow-y: scroll;
+}
+
+.alertPOP.large_modal.large_auto_height_modal .alert-modal-body h4 {
+  font-size: 20px;
+  // overflow-y: scroll;
+}
+.alertPOP.large_modal.large_auto_height_modal .alert-modal-body p {
+  font-size: 15px;
+  // overflow-y: scroll;
+}
+
+.alertPOP.large_modal .alert-modal-card .close-alert-button {
+  text-align: right;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.alert-modal.alertPOP .grandlotto_form label {
+  color: #fff !important;
+}
+
+.alert-modal
+  .alert-modal-card
+  .alert-modal-body
+  .grandlotto_form
+  .form-group
+  .form-control,
+.alert-modal
+  .alert-modal-card
+  .alert-modal-body
+  .grandlotto_form
+  .form-group
+  .symbolInput,
+.alert-modal
+  .alert-modal-card
+  .alert-modal-body
+  .grandlotto_form
+  .form-group
+  input {
+  background: darken($color: $primaryDark, $amount: 20%);
+  color: #fff !important;
+}
+
+@media screen and (max-width: 768px) {
+  .alertPOP.large_modal .alert-modal-card {
+    position: fixed !important;
+    bottom: 0px !important;
+    left: 0px !important;
+    width: 100% !important;
+    height: 86% !important;
+    padding: 0px !important;
+    margin-top: 0px;
+    padding-top: 20px !important;
+    // overflow-y: scroll;
+  }
+
+  .alertPOP.large_modal .alert-modal-card .grandlotto_form {
+    padding-bottom: 250px !important;
+  }
+}
+@media screen and (max-width: 650px) {
+  .alertPOP .alert-modal-card {
+    background: $primaryDark;
+    color: #fff;
+  }
+
+  .alert-modal .alert-modal-body h4,
+  .alert-modal-card .close-alert-button i,
+  .alert-modal .alert-modal-body .grandlotto_form label,
+  .alert-modal .alert-modal-body .grandlotto_form .form-group {
+    color: #fff !important;
+  }
+
+  .select_modals_cards {
+    padding-top: 0px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .smallPopup {
+    top: 0px;
+    width: 100%;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+  }
+
+  .select_modals_cards {
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    bottom: 0px !important;
+    width: 100%;
+    height: 100vh !important;
+    overflow: hidden;
+    padding-bottom: 10px !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .select_modals_cards {
+    background: $primaryDark;
+    color: #fff;
+    /* padding-bottom: 40px; */
+  }
+
+  .select-modal-header {
+    width: 100%;
+    background: $primaryDark;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+  }
+
+  .select-modal-header h5 {
+    color: #fff;
+  }
+
+  .select-modal-header i {
+    color: #fff;
+  }
+
+  .select_modals_body label {
+    color: #fff !important;
+  }
+
+  .select_modals_body select,
+  .select_modals_body select:focus,
+  .select_modals_body textarea,
+  .select_modals_body textarea:focus,
+  .select_modals_body input:focus,
+  .select_modals_body input {
+    background: darken($color: $primaryDark, $amount: 20%);
+    color: #fff !important;
+  }
+
+  .select_modals_body .card,
+  .select_modals_body .card-body,
+  .select_modals_body .card-header {
+    background: lighten($color: $primaryDark, $amount: 10%);
+    color: #fff !important;
+  }
+
+  .modalTitle {
+    font-size: 23px;
+    line-height: 43px;
+  }
+
+  .alert-modal-overlay {
+    background: rgba(61, 61, 63, 0.945);
+  }
+
+  .alertPOP .alert-modal-card {
+    width: 95% !important;
+    height: auto;
+  }
+
+  .alert-modal-card .close-alert-button {
+    margin-left: -10px;
+    // border-bottom: 1px solid #cfcfcf;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .alert-modal-card .close-alert-button i {
+    font-size: 25px;
+    margin: 0px;
+  }
+
+  .alert-modal-card .close-alert-button span {
+    padding-left: 12px;
+  }
+
+  .alert-modal-card .close-alert-button h4 {
+    margin-left: 10px;
+  }
+
+  body.dark-mode .alert-modal-card .close-alert-button span {
+    color: #fff;
+  }
+
+  .alert-modal-body .alert-modal-icon {
+    width: 50.22px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .alert-modal-body .alert-modal-icon i {
+    font-size: 45px;
+  }
+  .alert-modal .close-alert-button i {
+    font-size: 39px;
+  }
+
+  .alert-modal .alert-modal-body h4 {
+    font-size: 20px;
+  }
+
+  .alert-modal .alert-modal-body p {
+    font-size: 18px;
+    width: 89%;
+    margin: 4px auto 15px;
+  }
+
+  .alertPOP.large_modal .alert-modal-card .grandlotto_form::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .alertPOP.large_modal #closeAlertModal {
+    padding-top: 15px;
+    padding-right: 10px;
+  }
+
+  .alertPOP.large_modal .alert-modal-body h4 {
+    margin-top: -25px;
+  }
+
+  .alert-modal .alert-modal-body p {
+    color: #fff;
+  }
+  #loginModal.alert-modal .alert-modal-body p {
+    color: #fff;
+  }
+
+  .alertPOP.large_modal .alert-modal-card {
+    padding: 0px !important;
+    // overflow-y: scroll;
+  }
+
+  .alertPOP.large_modal .alert-modal-card .close-alert-button {
+    text-align: right;
+    position: relative;
+    right: unset;
+    top: unset;
+  }
+}

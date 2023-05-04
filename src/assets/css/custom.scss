@@ -1,0 +1,1262 @@
+p {
+  margin: 0px;
+}
+
+.instructionMessageInputCodes {
+  width: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.instructionMessageInputCodes input {
+  width: 52px;
+  height: 54px;
+  margin: 0px 4px;
+  background: #fff;
+  border: 1px solid $primaryNormal;
+  box-sizing: border-box;
+  border-radius: 10px;
+  /* transition: all 200ms ease-in; */
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.instructionMessageInputCodes input:focus {
+  background: #f7fff4;
+  outline-color: transparent;
+  outline: none;
+}
+
+.showHide {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.inputError {
+  text-align: left !important;
+  margin: 0px !important;
+  margin-top: 10px !important;
+  font-size: 14px !important;
+}
+
+.inputError.inputErrorSmall {
+  font-size: 12px !important;
+  text-align: left;
+}
+
+.responseMessage {
+  display: inline-block;
+  background: rgb(255, 146, 164);
+  width: auto;
+  padding: 4px 60px;
+  // white-space: nowrap;
+  border-radius: 2px;
+}
+
+.responseMessage p {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100% !important;
+  margin: 0px !important;
+  color: #111 !important;
+  font-size: 13px !important;
+}
+
+@keyframes slideInRight {
+  0% {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  to {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: hidden;
+  }
+}
+
+.componentLoading {
+  position: fixed;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(209, 225, 203, 0.635);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 199760009 !important;
+  transition: 400ms ease;
+}
+
+.componentLoading.inner {
+  position: absolute !important;
+}
+
+.componentLoading p {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 10px;
+  color: #282828;
+  margin-top: 19px;
+  margin-left: 10px;
+}
+
+.componentLoading_wrapper {
+  width: 50px;
+  height: 50px;
+}
+
+.componentLoading_loader {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 10px solid #ffffff;
+  border-top-color: $secondaryLight;
+  border-bottom-color: $primary;
+  border-radius: 50%;
+  animation: rotateBox 5s linear infinite;
+}
+
+@keyframes rotateBox {
+  0% {
+    transform: scale(1) rotate(360deg);
+  }
+  50% {
+    transform: scale(0.8) rotate(-360deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.tableLoading {
+  width: 100%;
+  background: linear-gradient(0deg, rgb(255, 255, 255), rgb(255, 255, 255)),
+    #ffffff;
+  border: 3px solid #ffffff;
+  box-sizing: border-box;
+
+  border-radius: 13px;
+  padding: 30px;
+}
+
+.cardLoading {
+  width: 600px;
+  margin: auto;
+  background: linear-gradient(0deg, rgb(255, 255, 255), rgb(255, 255, 255)),
+    #ffffff;
+  border: 3px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 13px;
+  padding: 30px;
+}
+
+.loading_grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 50px;
+  grid-template-areas:
+    "tem_1 tem_2 tem_3 tem_4"
+    "tem_5 tem_6 tem_7 tem_8";
+  gap: 30px;
+}
+
+.cardLoading .loading_grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 50px;
+  grid-template-areas:
+    "tem_1 tem_1"
+    "tem_2 tem_3"
+    "tem_4 tem_5";
+  gap: 30px;
+}
+
+.loadingItem {
+  width: 100%;
+  height: 30px;
+}
+
+.for_avatar {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 50% !important;
+  margin-bottom: 40px;
+}
+
+.loadingItem.tem_1 {
+  grid-area: tem_1;
+}
+
+.loadingItem.tem_2 {
+  grid-area: tem_2;
+}
+
+.loadingItem.tem_3 {
+  grid-area: tem_3;
+}
+
+.loadingItem.tem_4 {
+  grid-area: tem_4;
+}
+
+.loadingItem.tem_5 {
+  grid-area: tem_5;
+}
+
+.loadingItem.tem_6 {
+  grid-area: tem_6;
+}
+
+.is_loading {
+  background: #eee;
+  /* background: linear-gradient(110deg, #fff 8%, #ececec 18%, #fff 33%); */
+  border-radius: 5px;
+  /* background-size: 200% 100%; */
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1200px 104px;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.error_table {
+  width: 100%;
+  background: linear-gradient(0deg, rgb(255, 255, 255), rgb(255, 255, 255)),
+    #ffffff;
+  border: 3px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 13px;
+  padding: 80px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 9px 1px rgba(154, 154, 154, 0.25);
+  text-align: center;
+}
+
+.error_table .grandLottoButton {
+  width: 180px;
+  margin-top: 20px;
+}
+
+.has_link {
+  color: $primary;
+}
+
+.has_link:hover {
+  color: $secondaryDark;
+}
+
+.has_status {
+  display: inline-block;
+  padding: 5px 20px;
+  background: darken($color: $primaryLightLight, $amount: 9%) !important;
+  border-radius: 30px;
+  font-size: 12px;
+  color: $primaryDark;
+  font-weight: 600;
+}
+
+.has_status.isPending {
+  background: #f3eec6 !important;
+  color: #3c2d10 !important;
+}
+
+.has_status.isLost {
+  background: #ffebeb !important;
+  color: #3a0202 !important;
+}
+
+.has_status.isDeclined {
+  background: #fc5e5e !important;
+  color: #ffffff !important;
+}
+
+.has_status.isCancled {
+  background: #faf7f7 !important;
+  color: #3a0202 !important;
+}
+
+select.hasCapitalized,
+.hasCapitalized {
+  text-transform: capitalize !important;
+}
+
+.backButton {
+  cursor: pointer;
+}
+
+.butnFlex i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.butnFlex i.editBtnn {
+  color: rgb(194, 95, 3);
+}
+
+.butnFlex i.deleteBtnn {
+  color: rgb(246, 7, 7);
+}
+
+.grandLottoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 9px;
+  width: auto !important;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  height: 40px;
+  color: #ffffff;
+  background: $primary;
+  border-radius: 3px;
+  transition: all 400ms ease-in-out;
+  padding-left: 35px;
+  padding-right: 35px;
+  white-space: nowrap;
+}
+
+.grandLottoButton:disabled {
+  background: #aaecc2;
+  color: rgb(142, 141, 141);
+}
+
+.grandLottoButton.cardButton {
+  padding-left: 55px;
+  padding-right: 55px;
+  height: 50px;
+}
+
+.grandLottoButton:hover {
+  background: lighten($color: $primary, $amount: 10%);
+  transform: scale(1.05);
+}
+
+.grandLottoButton:disabled:hover {
+  background: #aaecc2;
+  // transform: scale(1);
+}
+
+.grandLottoButton.button-outline-light {
+  background: #fff !important;
+  color: $primary;
+}
+
+.grandLottoButton.grandLottoButtonLightGreen {
+  background: #f0fef6 !important;
+  border: 1px solid $primary;
+  color: $primary;
+  border-radius: 8px;
+}
+
+.grandLottoButton.filterButton {
+  background: #fff !important;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  color: #282828;
+  height: 50px;
+}
+
+.button-outline-trans {
+  background: transparent !important;
+  border: 1.5px solid $primary;
+  color: $primary;
+}
+
+.grandLottoButton.button-outline-light:hover {
+  background: lighten($color: #f1f1f1, $amount: 100%);
+}
+
+.grandlotto_form {
+  padding: 10px 30px;
+}
+
+.grandlotto_form .form-group,
+.password_input {
+  position: relative;
+}
+.password_input input {
+  padding-right: 40px;
+}
+
+.grandlotto_form label {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.grandlotto_form .form-control {
+  //   outline: none;
+  box-shadow: none;
+  height: calc(1.5em + 0.75rem + 10px);
+  font-weight: 400;
+  font-size: 14px;
+  color: #222;
+}
+
+.symbolInput {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 5px);
+  padding: 1rem 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.symbolInput:target {
+  border-color: $primary;
+}
+
+.symbolInput.isDisabled {
+  background: #e2e2e2;
+}
+
+.symbolInput span {
+  font-weight: 600 !important;
+}
+
+.symbolInput input {
+  border: none !important;
+  width: 100%;
+  background: transparent;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.symbolInput input:focus {
+  outline: none !important;
+}
+
+.symbolInput ::placeholder {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.grandlotto_form .form-control:focus {
+  outline-color: $primary;
+  border-color: $primary;
+}
+
+.grandlotto_form .form-control.largeInputFont {
+  // font-weight: bold;
+  font-size: 1rem;
+}
+
+.grandlotto_table_small {
+  display: block;
+  padding: 30px 15px 10px;
+}
+
+// .lotto_card {
+//   background: #f1f1f1;
+// }
+
+.grandlotto_table_small_flex {
+  margin-bottom: 20px;
+  padding: 15px 10px 20px;
+  border-radius: 6px;
+}
+
+.grandlotto_table_small_flex_top {
+  margin-top: 20px;
+}
+
+.grandlotto_table_small_flex_top div {
+  margin-bottom: 12px;
+}
+
+.grandlotto_table_small_flex_top div h4:last-child {
+  font-size: 14px;
+}
+
+.grandlotto_table_small_flex small {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 15px;
+  color: #fff;
+}
+
+.grandlotto_table_small_flex h5 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 15px;
+  color: #fff;
+}
+
+.grandlotto_table_small_flex p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10px;
+  color: #fff;
+}
+
+.page-link {
+  color: $primary;
+}
+
+.page-link:hover {
+  color: $primary;
+  // background-color: lighten($color: $primaryDark, $amount: 15%);
+  // border: 1px solid lighten($color: $primaryDark, $amount: 2%);
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: lighten($color: $primary, $amount: 5%);
+  border-color: lighten($color: $primary, $amount: 2%);
+}
+
+.no_data_div button {
+  height: 60px;
+  background: $primaryNormal;
+}
+
+.grandlotto_tabs .nav-tabs {
+  border: none !important;
+}
+
+.grandlotto_tabs .nav-tabs .nav-link {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 24px;
+  color: #282828;
+  transition: all 400ms ease;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-color: transparent !important;
+  border: none !important;
+}
+
+.grandlotto_tabs .nav-tabs .nav-link.active {
+  color: $primary;
+  background-color: #fff;
+  border-color: transparent !important;
+  border: none !important;
+}
+
+.tab-content .card {
+  border: none !important;
+}
+
+.grandlotto_tabs {
+  background: transparent !important;
+}
+
+.grandlotto_tabs .nav-tabs {
+  border: none !important;
+  border-color: transparent !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.grandlotto_tabs .nav-link {
+  background: #fafffb !important;
+  /* background-color: #ffe3e1 !important; */
+  border: none;
+  box-shadow: rgba(68, 88, 144, 0.1) 0px 10px 10px 0px;
+  border-radius: 4px;
+  transition: all 800ms ease;
+  font-weight: bold;
+  padding: 7px 22px;
+  margin-right: 7px;
+  color: rgb(32, 134, 19) !important;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+.grandlotto_tabs .nav-tabs::-webkit-scrollbar {
+  width: 0px;
+  transition: all 800ms ease;
+}
+
+.grandlotto_tabs .nav-link:hover {
+  color: $primary !important;
+  background-color: #bdffb6 !important;
+}
+
+.grandlotto_tabs .nav-link.active {
+  background: $primary !important;
+  color: rgb(255, 255, 255) !important;
+  font-weight: 500;
+}
+
+.pages {
+  padding: 25px 30px;
+  position: relative;
+}
+
+.site_title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  color: #282828;
+}
+
+.site_sub_title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 29px;
+  color: #282828;
+}
+
+.page_flex h5 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #282828;
+}
+
+.pages_mobile_dark p {
+  font-size: 14px;
+}
+
+.page_flex a {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: #282828;
+}
+
+.lottoHeightWeight {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #fff !important;
+  z-index: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+  text-align: center;
+}
+
+.lottoHeightWeightPage {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #f1f1f1 !important;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #111;
+  text-align: center;
+}
+
+.logoheaderPage {
+  margin-top: 70px;
+}
+
+.logoheaderPage p {
+  font-weight: 800 !important;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.lottoHeightWeightBody {
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.lottoHeightWeightBodyFormBody {
+  width: 30%;
+  margin: auto;
+  text-align: left;
+  background: #fff;
+  padding: 40px 10px;
+  border-radius: 5px;
+}
+
+.grandlotto_card,
+.grandlotto_table {
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.pages_mobile_dark .lotto_card,
+.pages_mobile_dark .grandlotto_card,
+.pages_mobile_dark .grandlotto_table {
+  background: transparent !important;
+}
+
+.grandlotto_table_small {
+  display: none;
+}
+
+.grandlotto_table th {
+  padding: 20px 0.75rem;
+  border-top: none !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #282828;
+  white-space: nowrap;
+}
+
+.grandlotto_table td {
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.confirmBlock {
+  margin-top: 30px;
+}
+
+.confirmBlock i.success_b {
+  background: $primary;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.confirmBlock i.error_b {
+  color: #a40404;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.confirmBlock i.pending_b {
+  background: $secondaryLight;
+  padding: 10px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.confirmBlock h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 29px;
+  color: #282828;
+}
+
+.confirmBlock p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.dragdropDiv [role="presentation"] {
+  margin-top: 30px;
+  width: 100%;
+  border: 2px dashed $primaryNormal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 10px;
+  transition: all 400ms ease-in;
+}
+
+.dragdropDiv.isFocusedd [role="presentation"] {
+  border: 2px dashed $secondaryLight;
+  background: #f3f3f3;
+}
+
+.dragdropDiv p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #282828;
+}
+
+.dragdropDiv small {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+  color: #282828;
+}
+
+@media screen and (max-width: 1100px) {
+  .pages {
+    padding: 20px 20px;
+  }
+
+  .lottoHeightWeightBodyFormBody {
+    width: 55%;
+  }
+}
+
+@media screen and (max-width: 605px) {
+  .instructionMessageInputCodes input {
+    width: 40px;
+    height: 34px;
+    margin: 0px 4px;
+    background: darken($color: $primaryDark, $amount: 20%);
+    color: #fff !important;
+  }
+
+  .instructionMessageInputCodes input:focus {
+    background: darken($color: $primaryDark, $amount: 20%);
+    color: #fff !important;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .pages_mobile_dark .grandlotto_form input:-webkit-autofill,
+  .pages_mobile_dark .grandlotto_form input:-webkit-autofill:hover,
+  .pages_mobile_dark .grandlotto_form input:-webkit-autofill:focus,
+  .pages_mobile_dark .grandlotto_form textarea:-webkit-autofill,
+  .pages_mobile_dark .grandlotto_form textarea:-webkit-autofill:hover,
+  .pages_mobile_dark .grandlotto_form textarea:-webkit-autofill:focus,
+  .pages_mobile_dark .grandlotto_form select:-webkit-autofill,
+  .pages_mobile_dark .grandlotto_form select:-webkit-autofill:hover,
+  .pages_mobile_dark .grandlotto_form select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0px 1000px
+      darken($color: $primaryDark, $amount: 20%) inset !important;
+    box-shadow: 0 0 0px 1000px darken($color: $primaryDark, $amount: 20%) inset !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    color: #fff !important;
+  }
+
+  .pages_mobile_dark .grandlotto_form input:disabled,
+  .pages_mobile_dark .grandlotto_form textarea:disabled,
+  .pages_mobile_dark .grandlotto_form select:disabled {
+    background: darken($color: $primaryDark, $amount: 20%) !important;
+  }
+
+  .lottoHeightWeightBodyFormBody {
+    width: 95%;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .componentLoading.inner {
+    position: fixed !important;
+  }
+
+  .content-body {
+    background: $primaryDark;
+  }
+  .pages {
+    padding: 20px 15px;
+    background: transparent;
+  }
+
+  .pages .pages_header {
+    padding: 20px 10px 0px;
+  }
+
+  .site_title {
+    font-size: 17px;
+    line-height: 29px;
+  }
+
+  .site_sub_title {
+    font-size: 15px;
+    line-height: 29px;
+  }
+
+  .page_flex h5 {
+    font-size: 20px;
+  }
+
+  .backButton {
+    padding-left: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+  }
+
+  .grandlotto_form {
+    padding: 0px;
+  }
+
+  .d-smm-block {
+    display: block !important;
+  }
+
+  .sm-text-center {
+    text-align: center !important;
+  }
+
+  .mt-sm-3 {
+    margin-top: 25px !important;
+  }
+
+  .paddRightSmall {
+    padding-right: 20px;
+  }
+
+  .confirmBlock h4 {
+    font-size: 20px;
+  }
+
+  .instructionMessageInputCodes input {
+    width: 59px;
+    height: 50px;
+    margin: 0px 4px;
+    /* border: 2px solid var(--mainRedColor); */
+    border-radius: 10px !important;
+    font-size: 20px;
+  }
+
+  .grandlotto_tabs .nav-tabs {
+    margin-top: 35px;
+  }
+
+  .grandlotto_tabs .nav-link {
+    font-size: 14px !important;
+    margin-right: 15px;
+  }
+
+  .grandLottoButton.filterButton {
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .grandlotto_tabs {
+    padding-left: 20px !important;
+  }
+
+  .grandlotto_table {
+    display: none;
+  }
+
+  .fullStop {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: $primary;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .fullStop.error {
+    background: red;
+  }
+
+  .fullStop.pending {
+    background: #ffd13b;
+  }
+
+  .grandlotto_table_small {
+    display: block;
+    padding: 30px 15px 10px;
+  }
+
+  .grandlotto_table_small_flex {
+    margin-bottom: 25px;
+  }
+
+  .page-link {
+    color: #fff;
+    background-color: lighten($color: $primaryDark, $amount: 10%);
+    border: 1px solid lighten($color: $primaryDark, $amount: 2%);
+  }
+
+  .page-link:hover {
+    color: #fff;
+    background-color: lighten($color: $primaryDark, $amount: 15%);
+    border: 1px solid lighten($color: $primaryDark, $amount: 2%);
+  }
+
+  .smallPagi {
+    display: none !important;
+  }
+
+  // .lotto_card {
+  //   background: #f1f1f1;
+  // }
+
+  .lotto_card .grandlotto_table_small_flex {
+    margin-bottom: 20px;
+
+    padding: 15px 10px 20px;
+    border-radius: 6px;
+  }
+
+  .pages_mobile_dark .lotto_card .grandlotto_table_small_flex {
+    background: darken($color: $primaryNormal, $amount: 19%) !important;
+  }
+
+  .grandlotto_table_small_flex_top {
+    margin-top: 20px;
+  }
+
+  .grandlotto_table_small_flex_top div {
+    margin-bottom: 12px;
+  }
+
+  .grandlotto_table_small_flex_top div h4:last-child {
+    font-size: 14px;
+  }
+
+  .pages_mobile_dark .alert-modal-body .alert-modal-icon i,
+  .pages_mobile_dark .alert-modal-body h4,
+  .pages_mobile_dark .alert-modal-body p,
+  .pages_mobile_dark .confirmBlock h4,
+  .pages_mobile_dark .showAccount h5,
+  .pages_mobile_dark .showAccount h6,
+  .pages_mobile_dark .showAccount p,
+  .pages_mobile_dark .paymentGateWay h5,
+  .pages_mobile_dark .dragdropDiv p,
+  .pages_mobile_dark .dragdropDiv small,
+  .pages_mobile_dark .grandlotto_table_small_flex h4,
+  .pages_mobile_dark .grandlotto_table_small_flex p,
+  .alert-modal-body
+    .grandlotto_table_small_row
+    .grandlotto_table_small_flex
+    small,
+  .alert-modal-body .grandlotto_table_small_row .grandlotto_table_small_flex p,
+  .alert-modal-body
+    .grandlotto_table_small_row
+    .grandlotto_table_small_flex
+    h5 {
+    color: #fff !important;
+  }
+
+  .pages_mobile_dark .paymentGateWay h5 {
+    margin-top: -10px;
+  }
+
+  .pages_mobile_dark .lengthyButton {
+    width: 100% !important;
+  }
+  .pages_mobile_dark .grandLottoButton:hover {
+    transform: scale(1) !important;
+  }
+
+  .grandlotto_table_small_flex h4 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    color: #282828;
+  }
+
+  .grandlotto_table_small_flex p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 10px;
+    color: #282828;
+  }
+
+  .grandlotto_table_small_flex .grandlotto_table_small_flex_right h4 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 15px;
+    color: #282828;
+  }
+
+  .grandlotto_table_small_flex p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 10px;
+    color: #282828;
+  }
+
+  .no_data_div h4 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px !important;
+    line-height: 10px;
+    color: #fff;
+  }
+
+  .no_data_div button {
+    height: 38px;
+    background: $primaryNormal;
+    font-weight: 400;
+  }
+
+  .pages_mobile_dark,
+  .dashboard_mobile {
+    background: $primaryDark;
+    height: 100%;
+  }
+
+  .pages_mobile_dark .card,
+  .pages_mobile_dark .grandlotto_card {
+    background: transparent !important;
+    color: #fff;
+  }
+
+  .pages_mobile_dark .site_title,
+  .pages_mobile_dark .site_sub_title,
+  .pages_mobile_dark label {
+    color: #fff !important;
+  }
+
+  .pages_mobile_dark select,
+  .pages_mobile_dark select:focus,
+  .pages_mobile_dark .symbolInput,
+  .pages_mobile_dark textarea,
+  .pages_mobile_dark textarea:focus,
+  .pages_mobile_dark input:focus,
+  .pages_mobile_dark input {
+    background: darken($color: $primaryDark, $amount: 20%);
+    color: #fff !important;
+  }
+
+  // .pages_mobile_dark .card,
+  // .pages_mobile_dark .card-body,
+  // .pages_mobile_dark .card-header {
+  //   background: lighten($color: $primaryDark, $amount: 10%);
+  //   color: #fff !important;
+  // }
+
+  .mobile_tr .sidebarMobleHeaderWalletButtons {
+    column-gap: 10px;
+    padding: 15px 0px;
+    margin: 10px 8px;
+  }
+
+  .mobile_tr .sidebarMobleHeaderWalletButtonsItem i {
+    font-size: 26px;
+  }
+
+  .mobile_tr .sidebarMobleHeaderWalletButtonsItem h4 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: #ffffff;
+    margin-bottom: 0px;
+  }
+
+  .mobile_tr .sidebarMobleHeaderWalletButtonsItem p {
+    margin-bottom: 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 12px;
+    color: #fff;
+    margin-top: 4px;
+  }
+
+  .transactionDark .grandlotto_table_small {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .transactionDark .grandlotto_table_small_flex p,
+  .transactionDark .grandlotto_table_small_flex h4 {
+    color: #fff;
+  }
+
+  .transactionDark .grandlotto_table_small_flex p {
+    margin-top: 10px;
+  }
+
+  .w_inner .card {
+    border: none !important;
+  }
+
+  .w_inner .card .grandlotto_form {
+    margin-top: -20px !important;
+  }
+
+  .profile_center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile_center img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .profile_center .ml-5 {
+    margin-left: 0px !important;
+  }
+
+  .profile_center button {
+    margin: auto !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logoheaderPage {
+    margin-top: 30px;
+  }
+
+  .logoheaderPage p {
+    font-size: 14px;
+  }
+
+  .lottoHeightWeightBody {
+    margin-top: 50px;
+  }
+
+  .lottoHeightWeightBodyFormBody {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

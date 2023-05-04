@@ -1,0 +1,126 @@
+@import "../../assets/css/colors.scss";
+
+.homeWalletOverview {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 22px;
+}
+
+.homeWalletOverviewItem {
+  background: #fff;
+  padding: 20px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.homeWalletOverviewItemImage {
+  width: 39px;
+  height: 37px;
+  background: #ebf6ff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeWalletOverviewItemImage img {
+  width: 50%;
+  height: auto;
+}
+
+.homeWalletOverviewItem h5 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  color: #282828;
+}
+
+.homeWalletOverviewItem h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 19px;
+  color: #282828;
+}
+
+.profileComplete {
+  margin-top: 40px;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.profileCompleteFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profileCompleteFlexLeft h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 20px;
+  color: #282828;
+}
+
+.profileCompleteFlexLeft p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #5f6a6d;
+}
+
+.profileCompleteFlexRight {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+}
+
+.profileCompleteFlexRight h5 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.profileCompleteFlexRight p {
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 650px) {
+  .homeWalletOverview {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .homeWalletOverviewItem {
+    background: $primaryLight;
+  }
+
+  .homeWalletOverviewItemImage {
+    background: transparent;
+    padding: 0px;
+    width: auto;
+    height: auto;
+  }
+
+  .homeWalletOverviewItemImage img {
+    filter: brightness(0) invert(1);
+    width: 25px;
+  }
+
+  .homeWalletOverviewItem h5 {
+    color: #fff;
+  }
+
+  .homeWalletOverviewItem h3 {
+    color: #fff;
+  }
+}

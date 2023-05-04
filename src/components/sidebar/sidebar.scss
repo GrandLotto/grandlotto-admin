@@ -1,0 +1,957 @@
+@import "../../assets/css/colors.scss";
+
+.app-wrapper {
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  position: relative;
+  color: #333;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mobile-menu,
+.betSlipMobile {
+  display: none !important;
+}
+
+.sidebar {
+  width: 20.5rem;
+  padding-bottom: 0px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2000;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-top {
+  padding: 20px 42px 0px 22px;
+}
+
+.sidebar_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(50, 56, 46, 0.507);
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.sidebar-logo {
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.sidebar-logo .close-menu-button {
+  display: none;
+}
+
+.sidebar-scroll {
+  position: relative;
+  height: 80vh !important;
+  overflow-y: scroll !important;
+  padding-bottom: 50px;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+.sidebar-logo .topHeaderLogo img {
+  width: 180px !important;
+  cursor: pointer;
+}
+
+.sidebar-scroll ul,
+.sidebar-bottom ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.sidebar-bottom {
+  margin-bottom: 0px;
+}
+
+.sidebar-bottom ul {
+  padding-top: 0px;
+  border-top: 1px solid gray;
+}
+
+.sidebar-scroll ul.sidebar_links_children {
+  padding: 0px;
+  // margin-left: 30px;
+  background: darken($color: $primaryLight, $amount: 10%);
+  border-radius: 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.sidebar-scroll ul.sidebar_links_children.menuActive {
+  padding: 10px;
+  max-height: max-content;
+}
+
+.sidebar-scroll ul.sidebar_links_children li:first-child {
+  // border-bottom: 1px solid gray;
+  margin-top: 5px;
+}
+
+.sidebar-scroll ul li,
+.sidebar-bottom ul li {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.sidebar-scroll ul li p {
+  color: gray;
+  padding-bottom: 10px;
+  // margin-bottom: 20px;
+  border-bottom: 1px solid gray !important;
+}
+
+.sidebar-scroll ul li a,
+.sidebar-bottom ul li a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 15px;
+  transition: all 300ms ease-in-out;
+  color: #fff;
+  padding: 12px 20px 12px 15px;
+  border-radius: 10px;
+}
+
+.sidebar-scroll ul li a.sidebar_links_header {
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.sidebar-scroll ul li a.sidebar_links_header div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.sidebar-scroll ul li a.sidebar_links_header .dropdownicon i {
+  font-size: 13px;
+}
+
+.sidebar-scroll
+  ul
+  li
+  a.sidebar_links_header.menuActive
+  .dropdownicon
+  i::before {
+  content: "\f078";
+}
+
+.sidebar-scroll ul li a.active,
+.sidebar-scroll ul li a:hover {
+  background: $primaryLight;
+}
+
+.sidebar-scroll ul li a span,
+.sidebar-bottom ul li a span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+}
+
+.sidebar-scroll ul.sidebar_links_children li a span {
+  font-size: 12px;
+}
+
+.sidebar-scroll ul li a i,
+.sidebar-bottom ul li a i {
+  font-size: 20px;
+  color: #fff;
+}
+
+// content-body
+.content-body {
+  background: #f3f3f3;
+  margin-left: 20rem;
+  z-index: 0;
+  transition: all 0.2s ease;
+  padding-bottom: 60px;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+// .content-body::-webkit-scrollbar {
+//   width: 0px !important;
+// }
+
+.headerTop {
+  background: $primaryDark;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 12px;
+  padding-bottom: 20px;
+}
+
+.headerTopFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.headerTopLeft h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 17px;
+  margin-bottom: 3px;
+}
+
+.headerTopLeft p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 17px;
+  margin-bottom: 0px;
+  color: #e7d232;
+  padding-left: 4px;
+}
+
+.topHeaderRightLoggedInNotification {
+  margin-left: 40px;
+  margin-right: 15px;
+}
+
+.topHeaderRightLoggedInNotification i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.headerTopMiddle .headerTopMiddleSearch {
+  width: 100%;
+}
+
+.inputWithSufix {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.headerTopMiddle .headerTopMiddleSearch {
+  width: 380px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.headerTopMiddle .headerTopMiddleSearch input {
+  width: 90%;
+  border: none;
+  height: 100%;
+  padding-left: 25px;
+  padding-right: 20px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transition: all 400ms ease-in-out;
+  font-size: 14px;
+}
+
+.inputWithSufix input {
+  width: 90%;
+  border: none;
+  height: 100%;
+  padding-left: 25px;
+  padding-right: 20px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transition: all 400ms ease-in-out;
+  font-size: 14px;
+}
+
+.inputWithSufix input:focus,
+.headerTopMiddle .headerTopMiddleSearch input:focus {
+  outline: none;
+  padding-left: 20px;
+}
+
+.inputWithSufix .searchIconn,
+.headerTopMiddle .headerTopMiddleSearch .searchIconn {
+  padding: 0px 20px;
+  height: 100%;
+  background: $primary;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  cursor: pointer;
+}
+
+.inputWithSufix .searchIconn {
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+.betSlipMobileBets .allBetSlips {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 22px;
+}
+
+.betSlipMobileBetsButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  margin-left: 30px;
+  //   justify-content: center;
+}
+
+@media screen and (max-width: 1300px) {
+  .sidebar {
+    width: 17.1rem;
+  }
+
+  .sidebar-top {
+    padding: 20px 32px 0px 22px;
+  }
+
+  .content-body {
+    margin-left: 17rem;
+  }
+
+  .headerTopLeft h4 {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .headerTopLeft p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .topHeaderRightLoggedInNotification {
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+
+  .topHeaderRightLoggedInNotification i {
+    font-size: 25px;
+  }
+
+  .headerTopMiddle .headerTopMiddleSearch {
+    width: 320px;
+    height: 45px;
+  }
+
+  .headerTopMiddle .headerTopMiddleSearch input {
+    padding-left: 25px;
+    padding-right: 20px;
+  }
+
+  .headerTopMiddle .headerTopMiddleSearch .searchIconn {
+    padding: 0px 20px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .sidebar {
+    width: 15.6rem;
+  }
+
+  .sidebar-top {
+    padding: 15px 30px 0px 22px;
+  }
+
+  .sidebar-logo .topHeaderLogo img {
+    width: 170px !important;
+    cursor: pointer;
+  }
+
+  .sidebar-scroll ul {
+    padding-top: 50px;
+  }
+
+  .sidebar-scroll ul li,
+  .sidebar-bottom ul li {
+    margin-bottom: 10px;
+  }
+
+  .sidebar-scroll ul li a,
+  .sidebar-bottom ul li a {
+    column-gap: 10px;
+    padding: 10px;
+  }
+
+  .sidebar-scroll ul li a span,
+  .sidebar-bottom ul li a span {
+    font-size: 15px;
+  }
+
+  .sidebar-scroll ul li a i,
+  .sidebar-bottom ul li a i {
+    font-size: 20px;
+  }
+
+  .content-body {
+    margin-left: 15.5rem;
+  }
+
+  .headerTop {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .headerTopLeft h4 {
+    font-size: 18px;
+    line-height: 17px;
+  }
+
+  .headerTopLeft p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .headerTopMiddle .headerTopMiddleSearch {
+    display: none;
+  }
+
+  .topHeaderRightLoggedInNotification {
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .topHeaderRightLoggedInNotification i {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .headerTop {
+    padding: 20px;
+  }
+
+  .headerTopLeft h4 {
+    font-size: 15px;
+  }
+
+  .headerTopLeft p {
+    font-size: 12px;
+  }
+
+  .sidebar {
+    background: $primaryDark;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 300px;
+    z-index: 420 !important;
+    transition: all 600ms ease-in-out;
+    transform: translateX(-190%);
+  }
+
+  .sidebar.showSidebarMenu {
+    transform: translateX(0);
+  }
+
+  #menuWrapper.menu_wrapper_div {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(24, 22, 22, 0.678);
+    z-index: 121;
+  }
+
+  #menuWrapper.menu_wrapper_div.showSidebarMenu {
+    display: unset;
+  }
+
+  .sidebar-logo .close-menu-button {
+    position: relative !important;
+    display: block !important;
+    text-align: right;
+    color: #fff;
+    font-size: 27px;
+    cursor: pointer;
+  }
+
+  .headerTop .hamburgar {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  .sidebar-logo .topHeaderLogo img {
+    width: 150px !important;
+    cursor: pointer;
+  }
+
+  .content-body {
+    margin-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .betSlipMobile {
+    display: block !important;
+  }
+
+  // .betSlipMobile .sidebar {
+  //   width: 50%;
+  //   top: 0px;
+  //   border-top: none !important;
+  // }
+
+  .betSlipMobileBets {
+    display: block;
+    height: 100%;
+  }
+
+  .betSlipMobileBets .allBetSlipItemBodyItem {
+    margin-bottom: 10px;
+  }
+
+  .betSlipMobileBets .allBetSlipItemBody .allBetSlipItemBodyItem h5 {
+    font-size: 15px !important;
+  }
+}
+@media screen and (max-width: 650px) {
+  .content-body {
+    padding-bottom: 9rem;
+    background: $primaryDark;
+  }
+
+  .content-body::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .oauth-wrapper {
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    color: #333;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .page_content {
+    width: 100%;
+    height: 100% !important;
+    overflow-y: scroll !important;
+    // margin-bottom: 850px !important;
+  }
+
+  .page_content::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .page_content,
+  .pages {
+    padding: 0px !important;
+    margin-top: 4.2rem;
+  }
+
+  .pages {
+    margin-top: 4.2rem;
+    background: #fff;
+  }
+
+  .topHeader,
+  .headerTop {
+    padding: 10px 15px !important;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 200;
+    box-shadow: 0 2px 4px 0 rgba(98, 98, 98, 0.2);
+    border: none !important;
+    // height: 0px !important;
+  }
+  .topHeader {
+    background: $primaryDark;
+    box-shadow: 0 2px 4px 0 rgba(98, 98, 98, 0.2);
+    // height: 0px !important;
+  }
+
+  .topHeader .hamburgar i {
+    // display: none !important;
+    color: #ffffff;
+  }
+
+  .sidebar-mobile .headerTopMiddle {
+    width: 100%;
+    padding: 30px 15px 10px;
+  }
+  .sidebar-mobile .headerTopMiddle .headerTopMiddleSearch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    top: 60px;
+    border-top: 1px solid #35513f !important;
+  }
+
+  .betSlipMobile .sidebar {
+    width: 100%;
+    top: 60px;
+    z-index: 419 !important;
+  }
+
+  .betSlipMobile .sidebar .threeColLeftWrapperClose {
+    display: none !important;
+  }
+
+  .betSlipMobileBets .allBetSlips {
+    width: 100%;
+    display: block !important;
+    gap: 0px;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    display: grid !important;
+    grid-gap: 0px;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    transition: 400ms;
+    background: darken($color: $primaryDark, $amount: 50%);
+    width: 100%;
+    height: 65px;
+    padding: 0px;
+    z-index: 9000;
+  }
+
+  .mobile-menu.hideMobileMenu {
+    display: none !important;
+  }
+
+  .mobile-menu a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1px;
+    height: 100%;
+    padding: 0px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .mobile-menu a.active {
+    background: $primaryNormal;
+  }
+
+  .mobile-menu a span {
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #ffffff;
+  }
+
+  .mobile-menu a.active span {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .mobile-menu a i {
+    font-size: 26px;
+    color: #bbbbbb;
+  }
+
+  .mobile-menu a.active i {
+    color: #fff;
+  }
+
+  .mobile-menu a .has_count {
+    position: relative;
+  }
+
+  .mobile-menu a .has_count small {
+    position: absolute;
+    top: -4px;
+    right: 25%;
+    color: #fff;
+    font-size: 12px;
+    display: inline-block;
+    background: $primary;
+    // padding: 3px 6px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+  }
+
+  .headerTopFlex {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    justify-content: center;
+  }
+
+  .headerTop .showOnMobile .topHeaderLogo {
+    margin-left: -30px;
+  }
+
+  .headerTopFlex .topHeaderRightLoggedIn {
+    margin-left: 0px !important;
+    justify-content: flex-end;
+  }
+
+  .headerTop .headerTopLeft i.bx-left-arrow-alt {
+    font-size: 30px !important;
+  }
+
+  .headerTopRight .topHeaderRightLoggedInBalance p {
+    font-size: 13px;
+    margin-bottom: 3px;
+    line-height: 10px;
+    text-align: left;
+  }
+
+  .headerTopRight .topHeaderRightLoggedInBalance h5 {
+    font-size: 16px;
+    margin-top: 0px;
+    text-align: left;
+  }
+
+  .sidebar-mobile {
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 135px;
+  }
+
+  .sidebar-mobile::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .sidebarMobleHeaderTopBalance,
+  .sidebarMobleHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #35513f !important;
+  }
+
+  .sidebarMobleHeader .imageInitial {
+    background: #f3f3f3;
+    padding: 20px 31px;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .sidebarMobleHeader h4 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    margin-top: 19px;
+  }
+
+  .sidebarMobleHeader p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 12px;
+    color: $secondaryLight;
+  }
+
+  .sidebarMobleHeaderTopBalance h4 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #ffffff;
+    margin-top: -19px;
+  }
+
+  .sidebarMobleHeaderTopBalance p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 12px;
+    color: #fff;
+    margin-top: 4px;
+  }
+
+  .sidebarMobleHeaderBottomBalance {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid #35513f !important;
+  }
+
+  .sidebarMobleHeaderBottomBalanceItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
+  }
+
+  .sidebarMobleHeaderBottomBalanceItem:first-child {
+    border-right: 1px solid #35513f !important;
+  }
+
+  .sidebarMobleHeaderBottomBalanceItem h4 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    color: #ffffff;
+  }
+
+  .sidebarMobleHeaderBottomBalanceItem p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 12px;
+    color: #fff;
+    margin-top: 4px;
+  }
+
+  .sidebarMobleHeaderWalletButtons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 26px 13px;
+    column-gap: 15px;
+  }
+
+  .sidebarMobleHeaderWalletButtonsItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 18px 0px;
+    background: $primaryLight;
+    border-radius: 5px;
+    color: #fff;
+  }
+
+  .sidebarMobleHeaderWalletButtonsItem i {
+    font-size: 24px;
+  }
+
+  .sidebarMobleHeaderWalletButtonsItem span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 12px;
+    color: #ffffff;
+    margin-top: 9px;
+  }
+
+  .sidebarLinkMenus {
+    width: 100%;
+  }
+
+  .sidebarLinkMenusDiv h3 {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    color: #ffffff;
+    padding-left: 15px;
+  }
+
+  .sidebarLinkMenusItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: $primaryLight;
+    margin-bottom: 1.2px;
+    color: #fff;
+  }
+
+  .sidebarLinkMenusItem:hover {
+    color: #fff;
+  }
+
+  .sidebarLinkMenusItem i {
+    font-size: 20px;
+  }
+
+  .sidebarLinkMenusItem .sidebarLinkMenusItemLeft {
+    display: flex;
+    align-items: center;
+    column-gap: 14px;
+  }
+
+  .sidebarLinkMenusItem .sidebarLinkMenusItemLeft span {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    font-size: 14px;
+  }
+
+  .betSlipMobileBetsButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    margin-left: 0px;
+    position: fixed;
+    bottom: 72px;
+    left: 0px;
+    width: 100%;
+    z-index: 200;
+    padding: 0px 30px;
+  }
+
+  .betSlipMobileBetsButtons button {
+    width: 100% !important;
+    height: 50px !important;
+    transform: scale(1) !important;
+  }
+
+  .betSlipMobileBetsButtons button:first-child {
+    border: 2px solid $primary;
+  }
+}
