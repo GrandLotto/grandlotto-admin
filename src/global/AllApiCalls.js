@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getacceptedid,
   getAllroles,
   getkycpendingusers,
   getUserInfo,
@@ -10,34 +9,20 @@ import {
 import { setRefreshing } from "../store/authSlice/authSlice";
 import {
   getAllgames,
-  getgames,
-  getgamesplayingtype,
   getgamestype,
-  Getgameswininglogs,
-  Getuserclosedgameplayed,
-  Getuseropengameplayed,
   getWinningLogs,
 } from "../store/betSlice/actions";
 import {
-  getacceptedpayment,
   getAccountBalances,
   getAllDepositlogs,
   getAllWithdrawfundrequest,
-  getCountryBanks,
-  getDepositlogs,
   getUserAccount,
-  getWithdrawfundrequest,
 } from "../store/wallet/actions";
-import { isUserAnAdmin } from "./customFunctions";
 
 const AllApiCalls = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.oauth.user);
   const refreshing = useSelector((state) => state.oauth.refreshing);
-  const userOpenBetsPage = useSelector((state) => state.bets.userOpenBetsPage);
-  const userCloseBetsPage = useSelector(
-    (state) => state.bets.userCloseBetsPage
-  );
 
   useEffect(() => {
     if (refreshing === true) {

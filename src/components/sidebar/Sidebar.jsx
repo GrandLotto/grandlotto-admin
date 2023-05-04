@@ -33,6 +33,18 @@ const Sidebar = () => {
               ></i>
             </div>
           </div>
+          <div>
+            <p
+              style={{
+                color: "#fff",
+                marginLeft: 50,
+                fontWeight: "600",
+                marginTop: -15,
+              }}
+            >
+              Admin
+            </p>
+          </div>
           <div className="sidebar-scroll">
             <ul>
               <div className="mt-3">
