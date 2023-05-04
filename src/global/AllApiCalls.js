@@ -46,26 +46,9 @@ const AllApiCalls = () => {
         dispatch(getUserInfo(user?.email));
         dispatch(getAccountBalances(user?.email));
         dispatch(getUserAccount(user?.email));
+
         dispatch(
-          Getuseropengameplayed({
-            email: user?.email,
-            pageNumber: userOpenBetsPage,
-            pageSize: 10,
-            startime: null,
-            endTime: null,
-          })
-        );
-        dispatch(
-          Getuserclosedgameplayed({
-            email: user?.email,
-            pageNumber: userCloseBetsPage,
-            pageSize: 10,
-            startime: null,
-            endTime: null,
-          })
-        );
-        dispatch(
-          getWithdrawfundrequest({
+          getWinningLogs({
             email: user?.email,
             pageNumber: 1,
             pageSize: 10,
@@ -74,7 +57,7 @@ const AllApiCalls = () => {
           })
         );
         dispatch(
-          getDepositlogs({
+          getAllWithdrawfundrequest({
             email: user?.email,
             pageNumber: 1,
             pageSize: 10,
@@ -82,54 +65,29 @@ const AllApiCalls = () => {
             endTime: null,
           })
         );
+        dispatch(
+          getAllDepositlogs({
+            email: user?.email,
+            pageNumber: 1,
+            pageSize: 10,
+            startime: null,
+            endTime: null,
+          })
+        );
+        dispatch(getAllgames());
+        dispatch(getuserlist());
+        dispatch(getkycpendingusers());
+        dispatch(getAllroles());
 
-        if (
-          user &&
-          user?.roles?.length &&
-          isUserAnAdmin(user?.roles) === true
-        ) {
-          dispatch(
-            getWinningLogs({
-              email: user?.email,
-              pageNumber: 1,
-              pageSize: 10,
-              startime: null,
-              endTime: null,
-            })
-          );
-          dispatch(
-            getAllWithdrawfundrequest({
-              email: user?.email,
-              pageNumber: 1,
-              pageSize: 10,
-              startime: null,
-              endTime: null,
-            })
-          );
-          dispatch(
-            getAllDepositlogs({
-              email: user?.email,
-              pageNumber: 1,
-              pageSize: 10,
-              startime: null,
-              endTime: null,
-            })
-          );
-          dispatch(getAllgames());
-          dispatch(getuserlist());
-          dispatch(getkycpendingusers());
-          dispatch(getAllroles());
-        }
-
-        dispatch(getacceptedid());
-        dispatch(getacceptedpayment());
-        dispatch(getCountryBanks("NG"));
+        // dispatch(getacceptedid());
+        // dispatch(getacceptedpayment());
+        // dispatch(getCountryBanks("NG"));
       }
 
-      dispatch(Getgameswininglogs());
-      dispatch(getgames());
+      // dispatch(Getgameswininglogs());
+      // dispatch(getgames());
       dispatch(getgamestype());
-      dispatch(getgamesplayingtype());
+      // dispatch(getgamesplayingtype());
 
       setTimeout(() => {
         dispatch(setRefreshing(false));
