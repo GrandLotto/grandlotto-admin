@@ -19,6 +19,7 @@ import AdminVerifyKYCPage from "../pages/admin/AdminVerifyKYCPage";
 
 import AdminValidateGames from "../pages/admin/AdminValidateGames";
 import LoginPage from "../pages/LoginPage";
+import AdminGamesPlayed from "../pages/admin/AdminGamesPlayed";
 
 const MyRouter = () => {
   return (
@@ -46,6 +47,10 @@ const MyRouter = () => {
               <Route
                 path="/admin/games/create-games-types"
                 element={<AdminCreateGametypes />}
+              />
+              <Route
+                path="/admin/games/games-played"
+                element={<AdminGamesPlayed />}
               />
               <Route
                 path="/admin/games/create-games"

@@ -9,6 +9,7 @@ import {
 import { setRefreshing } from "../store/authSlice/authSlice";
 import {
   getAllgames,
+  getallgamesplayed,
   getgamestype,
   getWinningLogs,
 } from "../store/betSlice/actions";
@@ -39,6 +40,12 @@ const AllApiCalls = () => {
             pageSize: 10,
             startime: null,
             endTime: null,
+          })
+        );
+        dispatch(
+          getallgamesplayed({
+            pageNumber: 1,
+            pageSize: 10,
           })
         );
         dispatch(

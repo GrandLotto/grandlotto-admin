@@ -9,7 +9,7 @@ import {
 import ComponentLoading from "../blocks/ComponentLoading";
 import PaginationBlock from "../blocks/PaginationBlock";
 
-const AllWinningTable = ({
+const AllBetPlayed = ({
   columns,
   page,
   totalPages,
@@ -55,35 +55,60 @@ const AllWinningTable = ({
               <tbody>
                 {data.map((item, index) => (
                   <tr key={index}>
-                    <td>{index < 10 ? "0" + (index + 1) : index}</td>
+                    <td>{item?.gameTicket || item?.id}</td>
 
                     <td>{item?.email + " (" + item?.customerCode + ")"}</td>
-                    <td>{item?.gamePlayed}</td>
-                    <td>{item?.numberPlayed}</td>
+                    <td>{item?.numbersplayed}</td>
+                    <td>{item?.gameName}</td>
+                    <td>{item?.gameTypeName}</td>
                     <td>
                       ₦{" "}
                       {item?.ammountPlayed
                         ? addComma(item?.ammountPlayed)
                         : item?.ammountPlayed}
                     </td>
-                    <td>
+                    {/* <td>
                       ₦{" "}
                       {item?.ammountWon
                         ? addComma(item?.ammountWon)
                         : item?.ammountWon}
-                    </td>
-                    <td>{formateDateAndTimeByName(item?.winningDate)}</td>
-                    {/* <td>
-                      <div
-                        className="d-flex butnFlex "
-                        style={{ columnGap: 10 }}
-                      >
-                        <i
-                          className="bx bx-trash-alt deleteBtnn"
-                          onClick={() => onDelete(item)}
-                        ></i>
-                      </div>
                     </td> */}
+                    <td>{formateDateAndTimeByName(item?.datePlayed)}</td>
+                    <td>
+                      {["pending", "processing"].includes(
+                        item?.status?.toLowerCase()
+                      ) && (
+                        <span className="has_status isPending">
+                          {item?.status || "none"}
+                        </span>
+                      )}
+                      {["lost"].includes(item?.status?.toLowerCase()) && (
+                        <span className="has_status isLost">
+                          {item?.status || "none"}
+                        </span>
+                      )}
+
+                      {["success", "won"].includes(
+                        item?.status?.toLowerCase()
+                      ) && (
+                        <span className="has_status ">
+                          {item?.status || "none"}
+                        </span>
+                      )}
+                      {[null].includes(item?.status) && (
+                        <span className="has_status isPending">
+                          {item?.status || "Processing"}
+                        </span>
+                      )}
+                    </td>
+                    <td>
+                      ₦{" "}
+                      {item?.status?.toLowerCase() === "lost"
+                        ? 0
+                        : item?.potentialwinningAmount
+                        ? addComma(item?.potentialwinningAmount)
+                        : item?.potentialwinningAmount}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -133,8 +158,8 @@ const AllWinningTable = ({
           data?.map((item, index) => (
             <div className="grandlotto_table_small_flex " key={index}>
               <div className="d-flex justify-content-between border-bottom pb-2 mb-2">
-                <small>{formateDateByName(item?.winningDate)}</small>
-                <small>{formatAMPM(item?.winningDate)}</small>
+                <small>{formateDateByName(item?.datePlayed)}</small>
+                <small>{formatAMPM(item?.datePlayed)}</small>
               </div>
               <div className="grandlotto_table_small_flex_top">
                 <div className="d-flex justify-content-between">
@@ -167,15 +192,28 @@ const AllWinningTable = ({
                   )}
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h4 className="">Game</h4>
-                  <h4 className="">
-                    <b>{item?.gamePlayed}</b>
+                  <h4 className="">User</h4>
+                  <h4 className="text-right">
+                    <b>{item?.email}</b> <br />
+                    <b>{" (" + item?.customerCode + ")"}</b>
                   </h4>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h4 className="">Details</h4>
+                  <h4 className="">Game Name</h4>
                   <h4 className="">
-                    <b>{item?.numberPlayed}</b>
+                    <b>{item?.gameName}</b>
+                  </h4>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <h4 className="">Game Type</h4>
+                  <h4 className="">
+                    <b>{item?.gameTypeName}</b>
+                  </h4>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <h4 className="">Numbers played</h4>
+                  <h4 className="">
+                    <b>{item?.numbersplayed}</b>
                   </h4>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -190,13 +228,15 @@ const AllWinningTable = ({
                   </h4>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h4 className="">Winning</h4>
+                  <h4 className="">Pot. Winning</h4>
                   <h4 className="">
                     <b>
                       ₦{" "}
-                      {item?.ammountWon
-                        ? addComma(item?.ammountWon)
-                        : item?.ammountWon}
+                      {item?.status?.toLowerCase() === "lost"
+                        ? 0
+                        : item?.potentialwinningAmount
+                        ? addComma(item?.potentialwinningAmount)
+                        : item?.potentialwinningAmount}
                     </b>
                   </h4>
                 </div>
@@ -248,4 +288,4 @@ const AllWinningTable = ({
   );
 };
 
-export default AllWinningTable;
+export default AllBetPlayed;

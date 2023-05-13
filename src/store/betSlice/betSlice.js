@@ -10,6 +10,7 @@ import {
   getallexistinggames,
   getWinningLogs,
   getAllgames,
+  getallgamesplayed,
 } from "./actions";
 
 const initialState = {
@@ -37,6 +38,9 @@ const initialState = {
   calculatedGames: null,
   expiryDate: null,
   betAmount: 0,
+  allGamesPlayed: null,
+  allGamesPlayedPage: 1,
+  allGamesPlayedTotalPages: 3,
 };
 
 const betSlice = createSlice({
@@ -128,6 +132,18 @@ const betSlice = createSlice({
     setAllWinningLogsTotalPages: (state, { payload }) => {
       state.allWinningLogsTotalPages = payload;
     },
+
+    setAllGamesPlayed: (state, { payload }) => {
+      state.allGamesPlayed = [...payload];
+    },
+
+    setAllGamesPlayedPage: (state, { payload }) => {
+      state.allGamesPlayedPage = payload;
+    },
+
+    setAllGamesPlayedTotalPages: (state, { payload }) => {
+      state.allGamesPlayedTotalPages = payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -170,6 +186,20 @@ const betSlice = createSlice({
         state.allWinningLogs = [];
         state.allWinningLogsPage = 1;
         state.allWinningLogsTotalPages = 2;
+      }
+    });
+
+    builder.addCase(getallgamesplayed.fulfilled, (state, { payload }) => {
+      state.allGamesPlayed = null;
+      if (payload && payload.data) {
+        state.allGamesPlayed = payload.data?.data;
+        state.allGamesPlayedPage = payload.data?.pageNumber;
+        state.allGamesPlayedTotalPages = payload.data?.totalPages;
+        console.log("allGamesPlayed", state.allGamesPlayed);
+      } else {
+        state.allGamesPlayed = [];
+        state.allGamesPlayedPage = 1;
+        state.allGamesPlayedTotalPages = 2;
       }
     });
 
@@ -254,6 +284,9 @@ export const {
   setAllWinningLogs,
   setAllWinningLogsPage,
   setAllWinningLogsTotalPages,
+  setAllGamesPlayed,
+  setAllGamesPlayedPage,
+  setAllGamesPlayedTotalPages,
 } = betSlice.actions;
 
 export default betSlice.reducer;

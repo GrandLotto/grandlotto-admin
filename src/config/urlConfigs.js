@@ -59,6 +59,7 @@ const UPDATE_GAME_URL = "/v1.0/Game/updategame";
 const GET_GAME_WINNING_LOG_URL = "/v1.0/Game/Getgameswininglogs";
 const DELETE_GAMETYPE_URL = "/v1.0/Game/deletegametype";
 const DELETE_GAME_URL = "/v1.0/Game/deletegame";
+const GET_ALL_GAMES_PLAYED_URL = "/v1.0/Game/Getallgamesplayed";
 
 // OTHERS
 const ADD_TRANSACTION_PIN_URL = "/v1.0/PIN/addTransactionPIN";
@@ -120,4 +121,5 @@ export {
   GET_ALL_ROLES_URL,
   ADD_USER_TO_ROLES_URL,
   VALIDATE_GAMES_URL,
+  GET_ALL_GAMES_PLAYED_URL,
 };
