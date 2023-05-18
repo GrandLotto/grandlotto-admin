@@ -10,6 +10,7 @@ import { setRefreshing } from "../store/authSlice/authSlice";
 import {
   getAllgames,
   getallgamesplayed,
+  getgamesgroup,
   getgamestype,
   getWinningLogs,
 } from "../store/betSlice/actions";
@@ -66,6 +67,7 @@ const AllApiCalls = () => {
             endTime: null,
           })
         );
+        dispatch(getgamesgroup());
         dispatch(getAllgames());
         dispatch(getuserlist());
         dispatch(getkycpendingusers());

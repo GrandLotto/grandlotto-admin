@@ -6,6 +6,7 @@ import {
   GET_ALL_GAMES_PLAYED_URL,
   GET_ALL_GAMES_URL,
   GET_CLOSED_GAMES_URL,
+  GET_GAMES_GROUP_URL,
   GET_GAMES_PLAYING_TYPES_URL,
   GET_GAMES_TYPES_URL,
   GET_GAMES_URL,
@@ -13,6 +14,19 @@ import {
   GET_GAME_WINNING_LOG_URL,
   GET_OPEN_GAMES_URL,
 } from "../../config/urlConfigs";
+
+export const getgamesgroup = createAsyncThunk(
+  "bets/getgamesgroup",
+  async (payload, { getState, dispatch }) => {
+    try {
+      const result = axios.get(GET_GAMES_GROUP_URL).then((response) => {
+        return response.data;
+      });
+
+      return result;
+    } catch (error) {}
+  }
+);
 
 export const getgames = createAsyncThunk(
   "bets/getgames",

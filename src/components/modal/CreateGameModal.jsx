@@ -15,9 +15,10 @@ const CreateGameModal = () => {
   const dispatch = useDispatch();
 
   const modal = useSelector((state) => state.alert.createGameModal);
-  // const user = useSelector((state) => state.oauth.user);
+  const gamesgroup = useSelector((state) => state.bets.gamesgroup);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedGameGroup, setselectedGameGroup] = useState("");
   const [gameName, setGameName] = useState("");
   // const [selectedDay, setSelectedDay] = useState("");
   const [status, setStatus] = useState("");
@@ -42,6 +43,7 @@ const CreateGameModal = () => {
     setIsLoading(false);
     setGameName("");
     setStartTime("");
+    setselectedGameGroup("");
     // setSelectedDay("");
     setStatus("");
     setIsAvailableToplay(true);
@@ -70,6 +72,8 @@ const CreateGameModal = () => {
         setStatus(modal?.payload?.status);
         setStartTime(modal?.payload?.startTime);
         setEndTime(modal?.payload?.endTime);
+        setselectedGameGroup(modal?.payload?.gameGroupId);
+
         validateForm();
       }
     }
@@ -77,9 +81,21 @@ const CreateGameModal = () => {
 
   useEffect(() => {
     validateForm();
-  }, [gameName, status, endTime, startTime, isAvailableToplay, emptyFields]);
+  }, [
+    gameName,
+    status,
+    endTime,
+    startTime,
+    isAvailableToplay,
+    selectedGameGroup,
+    emptyFields,
+  ]);
 
   const validateForm = () => {
+    if (!selectedGameGroup) {
+      setEmptyFields(true);
+      return false;
+    }
     if (!gameName) {
       setEmptyFields(true);
       return false;
@@ -147,6 +163,7 @@ const CreateGameModal = () => {
       startTime: startTime,
       endTime: endTime,
       status: status,
+      gameGroupId: selectedGameGroup,
     };
 
     // console.log("payload", payload);
@@ -248,7 +265,32 @@ const CreateGameModal = () => {
               style={{ width: "100%", padding: 0 }}
             >
               <div className="row">
-                <div className="col-md-12 mb-3">
+                <div className="col-md-6 mb-3">
+                  <div className="form-group">
+                    <label htmlFor="">Game Group</label>
+
+                    <select
+                      style={{ width: "100%" }}
+                      className="form-control hasCapitalized"
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setselectedGameGroup(e.target.value);
+                        }
+                      }}
+                      value={selectedGameGroup}
+                    >
+                      <option value="">Select game group</option>
+
+                      {gamesgroup &&
+                        gamesgroup?.map((item, index) => (
+                          <option key={index} value={item?.id}>
+                            {item?.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-6 mb-3">
                   <div className="form-group">
                     <label htmlFor="">Name</label>
                     <input

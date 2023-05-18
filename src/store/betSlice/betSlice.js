@@ -11,9 +11,11 @@ import {
   getWinningLogs,
   getAllgames,
   getallgamesplayed,
+  getgamesgroup,
 } from "./actions";
 
 const initialState = {
+  gamesgroup: null,
   allgames: null,
   games: null,
   allexistinggames: null,
@@ -210,6 +212,17 @@ const betSlice = createSlice({
         state.gameswininglogs = payload.data?.data;
       } else {
         state.gameswininglogs = [];
+      }
+    });
+
+    builder.addCase(getgamesgroup.fulfilled, (state, { payload }) => {
+      state.gamesgroup = null;
+
+      if (payload.data) {
+        state.gamesgroup = payload.data;
+        console.log("gamesgroup", payload.data);
+      } else {
+        state.gamesgroup = [];
       }
     });
 

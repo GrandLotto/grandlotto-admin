@@ -18,6 +18,7 @@ const AdminGamesPlayed = () => {
   const dispatch = useDispatch();
   // const user = useSelector((state) => state.oauth.user);
   const allGamesPlayed = useSelector((state) => state.bets.allGamesPlayed);
+  console.log("allGamesPlayed", allGamesPlayed);
   const allGamesPlayedPage = useSelector(
     (state) => state.bets.allGamesPlayedPage
   );
@@ -37,6 +38,9 @@ const AdminGamesPlayed = () => {
       name: "customer",
     },
 
+    {
+      name: "Games Group",
+    },
     {
       name: "Games Played",
     },

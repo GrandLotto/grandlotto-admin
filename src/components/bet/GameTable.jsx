@@ -3,6 +3,7 @@ import React from "react";
 import { formateDateAndTimeByName } from "../../global/customFunctions";
 import ComponentLoading from "../blocks/ComponentLoading";
 import PaginationBlock from "../blocks/PaginationBlock";
+import { useSelector } from "react-redux";
 
 const GameTable = ({
   columns,
@@ -20,6 +21,7 @@ const GameTable = ({
   onEdit,
   onDelete,
 }) => {
+  const gamesgroup = useSelector((state) => state.bets.gamesgroup);
   // const navigation = useNavigate();
   const handlePrev = () => {
     if (type === "WITHDRAWAL") {
@@ -77,6 +79,7 @@ const GameTable = ({
                   <tr key={index}>
                     <td>{item?.name}</td>
                     <td>{item?.dayAvailable}</td>
+
                     <td>
                       {/* {item?.status?.toLowerCase() === "open" && (
                         <span className={`has_status isPending`}>
@@ -103,6 +106,11 @@ const GameTable = ({
                       )}
                     </td>
                     <td>{item?.isAvailableToplay ? "Yes" : "No"}</td>
+                    <td>
+                      {gamesgroup?.find(
+                        (newItem) => newItem?.id === item?.gameGroupId
+                      )?.name || ""}
+                    </td>
 
                     {/* <td>{item?.accountNumber}</td> */}
                     <td>{formateDateAndTimeByName(item?.startTime)}</td>

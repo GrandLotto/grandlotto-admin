@@ -24,7 +24,11 @@ const AdminCreateGames = () => {
     },
 
     {
-      name: "is Available",
+      name: "Available",
+    },
+
+    {
+      name: "Game group",
     },
     {
       name: "Start",

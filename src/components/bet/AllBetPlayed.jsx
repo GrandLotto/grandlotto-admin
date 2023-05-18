@@ -58,6 +58,7 @@ const AllBetPlayed = ({
                     <td>{item?.gameTicket || item?.id}</td>
 
                     <td>{item?.email + " (" + item?.customerCode + ")"}</td>
+                    <td>{item?.gameGroupName || "None"}</td>
                     <td>{item?.numbersplayed}</td>
                     <td>{item?.gameName}</td>
                     <td>{item?.gameTypeName}</td>
