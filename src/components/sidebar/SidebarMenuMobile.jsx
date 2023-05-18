@@ -83,7 +83,7 @@ const SidebarMenuMobile = () => {
                   </div>
                   <i className="bx bx-chevron-right"></i>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   className="sidebarLinkMenusItem"
                   to="/admin/games/create-games-types"
                 >
@@ -92,7 +92,7 @@ const SidebarMenuMobile = () => {
                     <span>Games types</span>
                   </div>
                   <i className="bx bx-chevron-right"></i>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   className="sidebarLinkMenusItem"
                   to="/admin/games/create-games"

@@ -44,10 +44,10 @@ const MyRouter = () => {
                 path="/admin/user-controls"
                 element={<AdminUserAccountPage />}
               />
-              <Route
+              {/* <Route
                 path="/admin/games/create-games-types"
                 element={<AdminCreateGametypes />}
-              />
+              /> */}
               <Route
                 path="/admin/games/games-played"
                 element={<AdminGamesPlayed />}
