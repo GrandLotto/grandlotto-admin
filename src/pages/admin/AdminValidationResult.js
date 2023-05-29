@@ -167,8 +167,8 @@ const AdminValidationResult = () => {
     setShowFilter(false);
     setClearSeasrchFilter(false);
     const payload = {
-      gameId: 1,
-      // gameId: selectedGame?.id,
+      // gameId: 1,
+      gameId: selectedGame?.id,
       pageNumber: 1,
       pageSize: 10,
       startime: !startDate ? null : startDate,

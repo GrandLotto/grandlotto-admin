@@ -129,7 +129,7 @@ const SidebarMenuMobile = () => {
                 >
                   <div className="sidebarLinkMenusItemLeft">
                     <i className="bx bx-layout"></i>
-                    <span>Validated games</span>
+                    <span>All Validated games</span>
                   </div>
                   <i className="bx bx-chevron-right"></i>
                 </NavLink>
