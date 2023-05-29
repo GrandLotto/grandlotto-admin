@@ -21,7 +21,7 @@ const AdminValidatedGames = () => {
   // const user = useSelector((state) => state.oauth.user);
   const games = useSelector((state) => state.bets.allgames);
 
-  const validatedGames = useSelector((state) => state.bets.validatedGames);
+  // const validatedGames = useSelector((state) => state.bets.validatedGames);
   const validatedGamesPage = useSelector(
     (state) => state.bets.validatedGamesPage
   );
@@ -333,7 +333,7 @@ const AdminValidatedGames = () => {
             <div className="card mb-4">
               <AllBetPlayed
                 columns={columns}
-                data={validatedGames}
+                data={[]}
                 page={validatedGamesPage}
                 totalPages={validatedGamesTotalPages}
                 type="ADMIN"
