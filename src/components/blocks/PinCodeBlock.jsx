@@ -18,6 +18,7 @@ const PinCodeBlock = ({
   const [verifyCode4, setVerifyCode4] = useState("");
   const [verifyCode5, setVerifyCode5] = useState("");
   const [verifyCode6, setVerifyCode6] = useState("");
+  const [verifyCode7, setVerifyCode7] = useState("");
 
   useEffect(() => {
     // if (verifyCode1 && verifyCode2 && verifyCode3 && verifyCode4 && verifyCode5 && verifyCode6) {
@@ -25,7 +26,7 @@ const PinCodeBlock = ({
     // }
     // // console.log(`${verifyCode1}${verifyCode2}${verifyCode3}${verifyCode4}`);
     handleDone(
-      `${verifyCode1}${verifyCode2}${verifyCode3}${verifyCode4}${verifyCode5} ${verifyCode6}`
+      `${verifyCode1}${verifyCode2}${verifyCode3}${verifyCode4}${verifyCode5}${verifyCode6}${verifyCode7}`
     );
     // }
   }, [
@@ -35,6 +36,7 @@ const PinCodeBlock = ({
     verifyCode4,
     verifyCode5,
     verifyCode6,
+    verifyCode7,
   ]);
 
   useEffect(() => {
@@ -45,6 +47,7 @@ const PinCodeBlock = ({
       setVerifyCode4("");
       setVerifyCode5("");
       setVerifyCode6("");
+      setVerifyCode7("");
     }
   }, [resetEFields]);
 
@@ -96,10 +99,20 @@ const PinCodeBlock = ({
           autoComplete="new-password"
         />
       )}
-      {pinLength === 6 && (
+      {pinLength >= 6 && (
         <input
           value={verifyCode6}
           onChange={(e) => setVerifyCode6(e.target.value)}
+          type="text"
+          role="presentation"
+          maxLength={maxLength}
+          autoComplete="new-password"
+        />
+      )}
+      {pinLength >= 7 && (
+        <input
+          value={verifyCode7}
+          onChange={(e) => setVerifyCode7(e.target.value)}
           type="text"
           role="presentation"
           maxLength={maxLength}

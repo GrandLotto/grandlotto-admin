@@ -676,11 +676,12 @@ export const formateWinningMachineNumbers = (numbers) => {
     parseInt(num, 10)
   );
   let convertBackToString = String(mapArrayRemoveFirstZero);
-  // console.log("convertToStrings", convertToStrings);
-  // console.log("convertToArray", convertToArray);
-  // console.log("filterOutEmptyString", filterOutEmptyString);
-  // console.log("mapArrayRemoveFirstZero", mapArrayRemoveFirstZero);
-  // console.log("convertBackToString", convertBackToString);
+  console.log("numbers", numbers);
+  console.log("convertToStrings", convertToStrings);
+  console.log("convertToArray", convertToArray);
+  console.log("filterOutEmptyString", filterOutEmptyString);
+  console.log("mapArrayRemoveFirstZero", mapArrayRemoveFirstZero);
+  console.log("convertBackToString", convertBackToString);
 
   return convertBackToString;
 };

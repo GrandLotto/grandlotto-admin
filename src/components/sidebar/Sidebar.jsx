@@ -95,6 +95,12 @@ const Sidebar = () => {
                         <span>Validate games</span>
                       </NavLink>
                     </li>
+
+                    <li>
+                      <NavLink to="/admin/games/validation-results">
+                        <span>Validation game Results</span>
+                      </NavLink>
+                    </li>
                     <li>
                       <NavLink to="/admin/games/winnings">
                         <span>Winnings</span>

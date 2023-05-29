@@ -17,10 +17,12 @@ const AdminValidateGames = () => {
 
   const user = useSelector((state) => state.oauth.user);
   const games = useSelector((state) => state.bets.allgames);
+  const gamesgroup = useSelector((state) => state.bets.gamesgroup);
 
   const [pin, setPin] = useState("");
   const [pin2, setPin2] = useState("");
   const [selectedGame, setSelectedGame] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState(null);
   const [emptyFields, setEmptyFields] = useState(true);
   const [resetEFields, setResetEFields] = useState(false);
 
@@ -30,6 +32,7 @@ const AdminValidateGames = () => {
     setEmptyFields(true);
     setResetEFields(true);
     setSelectedGame("");
+    setSelectedGroup(null);
   };
 
   useEffect(() => {
@@ -45,18 +48,37 @@ const AdminValidateGames = () => {
       setEmptyFields(true);
       return false;
     }
-    if (pin !== "" && pin.length !== 11) {
-      setEmptyFields(true);
-      return false;
-    }
 
-    if (!pin2) {
-      setEmptyFields(true);
-      return false;
-    }
-    if (pin2 !== "" && pin2.length !== 11) {
-      setEmptyFields(true);
-      return false;
+    if (selectedGroup && selectedGroup?.code === "790") {
+      // console.log(pin?.length);
+      if (pin !== "" && pin.length !== 14) {
+        setEmptyFields(true);
+        return false;
+      }
+
+      if (!pin2) {
+        setEmptyFields(true);
+        return false;
+      }
+      if (pin2 !== "" && pin2.length !== 14) {
+        setEmptyFields(true);
+        return false;
+      }
+    } else {
+      // console.log(pin?.length);
+      if (pin !== "" && pin.length !== 10) {
+        setEmptyFields(true);
+        return false;
+      }
+
+      if (!pin2) {
+        setEmptyFields(true);
+        return false;
+      }
+      if (pin2 !== "" && pin2.length !== 10) {
+        setEmptyFields(true);
+        return false;
+      }
     }
 
     setEmptyFields(false);
@@ -68,6 +90,20 @@ const AdminValidateGames = () => {
 
   const handleDone2 = (code) => {
     setPin2(code);
+  };
+
+  const handleChecSelectedGame = (gameID) => {
+    setResetEFields(true);
+    let newId = +gameID;
+    let selGame = games?.find((item) => item?.id === newId);
+
+    if (selGame) {
+      let selectedG = gamesgroup?.find(
+        (item) => item?.id === selGame?.gameGroupId
+      );
+      setSelectedGroup(selectedG);
+      // console.log("selectedG", selectedG);
+    }
   };
 
   const proceed = () => {
@@ -154,6 +190,14 @@ const AdminValidateGames = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (resetEFields) {
+      setTimeout(() => {
+        setResetEFields(false);
+      }, 1000);
+    }
+  }, [resetEFields]);
+
   return (
     <>
       <div className="pages">
@@ -196,6 +240,7 @@ const AdminValidateGames = () => {
                               onChange={(e) => {
                                 if (e.target.value) {
                                   setSelectedGame(e.target.value);
+                                  handleChecSelectedGame(e.target.value);
                                 }
                               }}
                               value={selectedGame}
@@ -223,7 +268,11 @@ const AdminValidateGames = () => {
                         </label>
 
                         <PinCodeBlock
-                          pinLength={5}
+                          pinLength={
+                            selectedGroup && selectedGroup?.code === "790"
+                              ? 7
+                              : 5
+                          }
                           maxLength={2}
                           handleDone={handleDone}
                           resetEFields={resetEFields}
@@ -238,7 +287,11 @@ const AdminValidateGames = () => {
                         </label>
 
                         <PinCodeBlock
-                          pinLength={5}
+                          pinLength={
+                            selectedGroup && selectedGroup?.code === "790"
+                              ? 7
+                              : 5
+                          }
                           maxLength={2}
                           handleDone={handleDone2}
                           resetEFields={resetEFields}
