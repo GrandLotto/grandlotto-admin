@@ -14,6 +14,7 @@ import {
   GET_GAME_WINNING_LOG_URL,
   GET_OPEN_GAMES_URL,
   GET_VALIDATED_GAMES_BY_GAMEID_URL,
+  GET_VALIDATED_GAMES_URL,
 } from "../../config/urlConfigs";
 
 export const getgamesgroup = createAsyncThunk(
@@ -188,6 +189,25 @@ export const getallgamesplayed = createAsyncThunk(
     try {
       const result = axios
         .post(GET_ALL_GAMES_PLAYED_URL, newPayload)
+        .then((response) => {
+          return response.data;
+        });
+
+      return result;
+    } catch (error) {}
+  }
+);
+
+export const getValidatedgames = createAsyncThunk(
+  "bets/getValidatedgames",
+  async (payload, { getState, dispatch }) => {
+    const newPayload = {
+      pageNumber: 1,
+      pageSize: 10,
+    };
+    try {
+      const result = axios
+        .post(GET_VALIDATED_GAMES_URL, newPayload)
         .then((response) => {
           return response.data;
         });

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getacceptedpayment,
   getAccountBalances,
+  getAdminCount,
   getAllDepositlogs,
   getAllWithdrawfundrequest,
   getCountryBanks,
@@ -11,6 +12,7 @@ import {
 } from "./actions";
 
 const initialState = {
+  adminCounts: null,
   accountBalances: null,
   userBankAccounts: null,
   acceptedpayment: null,
@@ -122,6 +124,13 @@ const walletSlice = createSlice({
     builder.addCase(getUserAccount.fulfilled, (state, { payload }) => {
       if (payload && payload.data) {
         state.userBankAccounts = payload.data;
+      }
+    });
+
+    builder.addCase(getAdminCount.fulfilled, (state, { payload }) => {
+      if (payload && payload.data) {
+        state.adminCounts = payload.data;
+        // console.log("adminCounts", state.adminCounts);
       }
     });
 

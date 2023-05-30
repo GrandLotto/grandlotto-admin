@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_VALIDATED_GAMES_BY_GAMEID_URL } from "../../config/urlConfigs";
 import { handlePOSTRequest } from "../../rest/apiRest";
 import {
-  setValidatedGames,
-  setValidatedGamesPage,
-  setValidatedGamesTotalPages,
+  setAllValidatedGameResults,
+  setAllValidatedGameResultsPage,
+  setAllValidatedGameResultsTotalPages,
 } from "../../store/betSlice/betSlice";
 import {
   setAlertPopUp,
@@ -21,12 +21,14 @@ const AdminValidationResult = () => {
   // const user = useSelector((state) => state.oauth.user);
   const games = useSelector((state) => state.bets.allgames);
 
-  const validatedGames = useSelector((state) => state.bets.validatedGames);
-  const validatedGamesPage = useSelector(
-    (state) => state.bets.validatedGamesPage
+  const allValidatedGameResults = useSelector(
+    (state) => state.bets.allValidatedGameResults
   );
-  const validatedGamesTotalPages = useSelector(
-    (state) => state.bets.validatedGamesTotalPages
+  const allValidatedGameResultsPage = useSelector(
+    (state) => state.bets.allValidatedGameResultsPage
+  );
+  const allValidatedGameResultsTotalPages = useSelector(
+    (state) => state.bets.allValidatedGameResultsTotalPages
   );
   const [selectedGame, setSelectedGame] = useState("");
   const [showFilter, setShowFilter] = useState(false);
@@ -91,7 +93,7 @@ const AdminValidationResult = () => {
   const previousPage = (type) => {
     const payload = {
       gameId: selectedGame?.id,
-      pageNumber: validatedGamesPage - 1,
+      pageNumber: allValidatedGameResultsPage - 1,
       pageSize: 10,
       startime: !startDate ? null : startDate,
       endTime: !endDate ? null : endDate,
@@ -105,7 +107,7 @@ const AdminValidationResult = () => {
   const nextPage = (type) => {
     const payload = {
       gameId: selectedGame?.id,
-      pageNumber: validatedGamesPage + 1,
+      pageNumber: allValidatedGameResultsPage + 1,
       pageSize: 10,
       startime: !startDate ? null : startDate,
       endTime: !endDate ? null : endDate,
@@ -132,12 +134,16 @@ const AdminValidationResult = () => {
           let totalPages = requestData?.totalPages;
           let allDatas = requestData?.data;
 
-          dispatch(setValidatedGames(allDatas));
-          dispatch(setValidatedGamesPage(currentPage));
-          dispatch(setValidatedGamesTotalPages(totalPages));
+          dispatch(setAllValidatedGameResults(allDatas));
+          dispatch(setAllValidatedGameResultsPage(currentPage));
+          dispatch(setAllValidatedGameResultsTotalPages(totalPages));
         } else {
-          dispatch(setValidatedGamesPage(validatedGamesPage));
-          dispatch(setValidatedGamesTotalPages(validatedGamesTotalPages));
+          dispatch(setAllValidatedGameResultsPage(allValidatedGameResultsPage));
+          dispatch(
+            setAllValidatedGameResultsTotalPages(
+              allValidatedGameResultsTotalPages
+            )
+          );
 
           dispatch(
             setAlertSmallPOPUP({
@@ -333,16 +339,16 @@ const AdminValidationResult = () => {
             <div className="card mb-4">
               <AllBetPlayed
                 columns={columns}
-                data={validatedGames}
-                page={validatedGamesPage}
-                totalPages={validatedGamesTotalPages}
+                data={allValidatedGameResults}
+                page={allValidatedGameResultsPage}
+                totalPages={allValidatedGameResultsTotalPages}
                 type="ADMIN"
                 isLoading={isLoading}
                 nextP={nextPage}
                 PrevP={previousPage}
                 fetchByPage={fetchByPage}
                 columnSpan={10}
-                noDataText="No validated game"
+                noDataText="No validation game result"
                 onDelete={() => {}}
               />
             </div>

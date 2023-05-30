@@ -4,6 +4,7 @@ import "../../config/axios";
 import {
   GET_ACCEPTED_PAYMENT_URL,
   GET_ACCOUNT_BALANCES_URL,
+  GET_ADMIN_COUNT_URL,
   GET_COUNTRY_BANK_ACCOUNTS_URL,
   GET_DEPOSITS_URL,
   GET_USER_BANK_ACCOUNTS_URL,
@@ -24,6 +25,19 @@ export const getAccountBalances = createAsyncThunk(
         .then((response) => {
           return response.data;
         });
+
+      return result;
+    } catch (error) {}
+  }
+);
+
+export const getAdminCount = createAsyncThunk(
+  "wallet/getAdminCount",
+  async (payload, { dispatch }) => {
+    try {
+      const result = axios.get(GET_ADMIN_COUNT_URL).then((response) => {
+        return response.data;
+      });
 
       return result;
     } catch (error) {}

@@ -12,10 +12,12 @@ import {
   getallgamesplayed,
   getgamesgroup,
   getgamestype,
+  getValidatedgames,
   getWinningLogs,
 } from "../store/betSlice/actions";
 import {
   getAccountBalances,
+  getAdminCount,
   getAllDepositlogs,
   getAllWithdrawfundrequest,
   getUserAccount,
@@ -33,6 +35,7 @@ const AllApiCalls = () => {
         dispatch(getUserInfo(user?.email));
         dispatch(getAccountBalances(user?.email));
         dispatch(getUserAccount(user?.email));
+        dispatch(getAdminCount());
 
         dispatch(
           getWinningLogs({
@@ -45,6 +48,12 @@ const AllApiCalls = () => {
         );
         dispatch(
           getallgamesplayed({
+            pageNumber: 1,
+            pageSize: 10,
+          })
+        );
+        dispatch(
+          getValidatedgames({
             pageNumber: 1,
             pageSize: 10,
           })

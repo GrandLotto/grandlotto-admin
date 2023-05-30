@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_VALIDATED_GAMES_BY_GAMEID_URL } from "../../config/urlConfigs";
+import { GET_VALIDATED_GAMES_URL } from "../../config/urlConfigs";
 import { handlePOSTRequest } from "../../rest/apiRest";
 import {
   setValidatedGames,
@@ -12,28 +12,23 @@ import {
   setAlertPopUp,
   setAlertSmallPOPUP,
 } from "../../store/alert/alertSlice";
-import FilterModals from "../../components/modal/FilterModals";
-import AllBetPlayed from "../../components/bet/AllBetPlayed";
-import { formateDateAndTimeByName } from "../../global/customFunctions";
+import AllValidatedGames from "../../components/bet/AllValidatedGames";
 
 const AdminValidatedGames = () => {
   const dispatch = useDispatch();
   // const user = useSelector((state) => state.oauth.user);
-  const games = useSelector((state) => state.bets.allgames);
+  // const games = useSelector((state) => state.bets.allgames);
 
-  // const validatedGames = useSelector((state) => state.bets.validatedGames);
+  const validatedGames = useSelector((state) => state.bets.validatedGames);
   const validatedGamesPage = useSelector(
     (state) => state.bets.validatedGamesPage
   );
   const validatedGamesTotalPages = useSelector(
     (state) => state.bets.validatedGamesTotalPages
   );
-  const [selectedGame, setSelectedGame] = useState("");
-  const [showFilter, setShowFilter] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [clearSeasrchFilter, setClearSeasrchFilter] = useState(false);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
 
   const columns = [
     {
@@ -41,33 +36,19 @@ const AdminValidatedGames = () => {
     },
 
     {
-      name: "customer",
-    },
-
-    {
-      name: "Games Group",
-    },
-    {
-      name: "Games Played",
-    },
-    {
       name: "Games Name",
     },
+
     {
-      name: "Games Type",
-    },
-    {
-      name: "Stake",
-    },
-    {
-      name: "Date/Time",
-    },
-    {
-      name: "Status",
+      name: "Winning Numbers",
     },
 
     {
-      name: "Pot. winning",
+      name: "Machine Numbers",
+    },
+
+    {
+      name: "Date/Time validated",
     },
 
     // {
@@ -77,41 +58,40 @@ const AdminValidatedGames = () => {
 
   const fetchByPage = (type, page) => {
     const payload = {
-      gameId: selectedGame?.id,
       pageNumber: page,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      // startime: !startDate ? null : startDate,
+      // endTime: !endDate ? null : endDate,
     };
-    let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
+    let url = GET_VALIDATED_GAMES_URL;
 
     fetchMore(type, url, payload);
   };
 
   const previousPage = (type) => {
     const payload = {
-      gameId: selectedGame?.id,
+      // gameId: selectedGame?.id,
       pageNumber: validatedGamesPage - 1,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      // startime: !startDate ? null : startDate,
+      // endTime: !endDate ? null : endDate,
     };
 
-    let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
+    let url = GET_VALIDATED_GAMES_URL;
 
     fetchMore(type, url, payload);
   };
 
   const nextPage = (type) => {
     const payload = {
-      gameId: selectedGame?.id,
+      // gameId: selectedGame?.id,
       pageNumber: validatedGamesPage + 1,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      // startime: !startDate ? null : startDate,
+      // endTime: !endDate ? null : endDate,
     };
 
-    let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
+    let url = GET_VALIDATED_GAMES_URL;
 
     fetchMore(type, url, payload);
   };
@@ -164,38 +144,19 @@ const AdminValidatedGames = () => {
   };
 
   const handleFilter = () => {
-    setShowFilter(false);
     setClearSeasrchFilter(false);
     const payload = {
       // gameId: 1,
-      gameId: selectedGame?.id,
+      // gameId: selectedGame?.id,
       pageNumber: 1,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      // startime: !startDate ? null : startDate,
+      // endTime: !endDate ? null : endDate,
     };
-    let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
+    let url = GET_VALIDATED_GAMES_URL;
 
     fetchMore("", url, payload);
   };
-
-  const clearFilter = () => {
-    setStartDate("");
-    setEndDate("");
-    setClearSeasrchFilter(true);
-  };
-
-  useEffect(() => {
-    if (startDate && endDate) {
-      handleFilter();
-    }
-  }, [startDate, endDate]);
-
-  useEffect(() => {
-    if (selectedGame) {
-      handleFilter();
-    }
-  }, [selectedGame]);
 
   useEffect(() => {
     if (clearSeasrchFilter === true) {
@@ -212,128 +173,17 @@ const AdminValidatedGames = () => {
 
   return (
     <>
-      <FilterModals
-        status={showFilter}
-        setVisiblityStatus={setShowFilter}
-        modalTitle="Filter"
-      >
-        <div>
-          <div className="card mb-3">
-            <div className="card-header">
-              <h6 className="font-weight-bold">Date</h6>
-            </div>
-            <div className="card-body">
-              <div className="form-group mb-4">
-                <label htmlFor="">Start from</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      setStartDate(e.target.value);
-                    }
-                  }}
-                  value={startDate}
-                />
-              </div>
-              <div className="form-group mb-4">
-                <label htmlFor="">To</label>
-                <input
-                  type="date"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      setEndDate(e.target.value);
-                    }
-                  }}
-                  value={endDate}
-                  className="form-control"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </FilterModals>
       <div className="pages">
         <div className="pages_mobile_dark">
           <div className="d-flex justify-content-between pages_header">
             <h5 className="site_title">{"Games > Validated Games"}</h5>
           </div>
-          <div className="d-flex justify-content-end paddRightSmall">
-            <div
-              className="d-flex align-items-center mb-0"
-              style={{ columnGap: 10 }}
-            >
-              {(startDate || endDate) && (
-                <a
-                  href="true"
-                  className="has_link"
-                  style={{
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    clearFilter();
-                  }}
-                >
-                  Clear Filtering
-                </a>
-              )}
-              <button
-                className="grandLottoButton filterButton"
-                onClick={() => {
-                  setStartDate("");
-                  setEndDate("");
-                  setShowFilter(true);
-                }}
-              >
-                <span
-                  className="d-flex align-items-center"
-                  style={{ columnGap: 10 }}
-                >
-                  <i className="bx bx-slider"></i>
-                  <span>Filter</span>
-                </span>
-              </button>
-            </div>
-          </div>
-
-          <div className="row mt-2">
-            <div className="col-md-3">
-              <div className="form-group" style={{ width: "100%" }}>
-                <label htmlFor="" className="mb-3">
-                  Select Game
-                </label>
-
-                <select
-                  style={{ width: "100%" }}
-                  className="form-control hasCapitalized"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      setSelectedGame(e.target.value);
-                    }
-                  }}
-                  value={selectedGame}
-                >
-                  <option value="">Select day</option>
-
-                  {games &&
-                    games?.map((item, index) => (
-                      <option key={index} value={item?.id}>
-                        {item?.name} {""}(
-                        {formateDateAndTimeByName(item?.startTime)})
-                      </option>
-                    ))}
-                </select>
-              </div>
-            </div>
-          </div>
 
           <div className="mt-5 w_inner">
             <div className="card mb-4">
-              <AllBetPlayed
+              <AllValidatedGames
                 columns={columns}
-                data={[]}
+                data={validatedGames}
                 page={validatedGamesPage}
                 totalPages={validatedGamesTotalPages}
                 type="ADMIN"
@@ -342,7 +192,7 @@ const AdminValidatedGames = () => {
                 PrevP={previousPage}
                 fetchByPage={fetchByPage}
                 columnSpan={10}
-                noDataText="No validation game result"
+                noDataText="No validated game"
                 onDelete={() => {}}
               />
             </div>

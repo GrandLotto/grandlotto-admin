@@ -13,6 +13,7 @@ import {
   getallgamesplayed,
   getgamesgroup,
   getValidatedGamesByGameID,
+  getValidatedgames,
 } from "./actions";
 
 const initialState = {
@@ -47,6 +48,9 @@ const initialState = {
   validatedGames: null,
   validatedGamesPage: 1,
   validatedGamesTotalPages: 3,
+  allValidatedGameResults: null,
+  allValidatedGameResultsPage: 1,
+  allValidatedGameResultsTotalPages: 3,
 };
 
 const betSlice = createSlice({
@@ -161,6 +165,18 @@ const betSlice = createSlice({
     setValidatedGamesTotalPages: (state, { payload }) => {
       state.validatedGamesTotalPages = payload;
     },
+
+    setAllValidatedGameResults: (state, { payload }) => {
+      state.allValidatedGameResults = [...payload];
+    },
+
+    setAllValidatedGameResultsPage: (state, { payload }) => {
+      state.allValidatedGameResultsPage = payload;
+    },
+
+    setAllValidatedGameResultsTotalPages: (state, { payload }) => {
+      state.allValidatedGameResultsTotalPages = payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -212,7 +228,7 @@ const betSlice = createSlice({
         state.allGamesPlayed = payload.data?.data;
         state.allGamesPlayedPage = payload.data?.pageNumber;
         state.allGamesPlayedTotalPages = payload.data?.totalPages;
-        console.log("allGamesPlayed", state.allGamesPlayed);
+        // console.log("allGamesPlayed", state.allGamesPlayed);
       } else {
         state.allGamesPlayed = [];
         state.allGamesPlayedPage = 1;
@@ -235,7 +251,7 @@ const betSlice = createSlice({
 
       if (payload.data) {
         state.gamesgroup = payload.data;
-        console.log("gamesgroup", payload.data);
+        // console.log("gamesgroup", payload.data);
       } else {
         state.gamesgroup = [];
       }
@@ -291,19 +307,33 @@ const betSlice = createSlice({
       }
     });
 
+    builder.addCase(getValidatedgames.fulfilled, (state, { payload }) => {
+      state.validatedGames = null;
+      if (payload && payload.data) {
+        state.validatedGames = payload.data?.data;
+        state.validatedGamesPage = payload.data?.pageNumber;
+        state.validatedGamesTotalPages = payload.data?.totalPages;
+        // console.log("validatedGames", state.validatedGames);
+      } else {
+        state.validatedGames = [];
+        state.validatedGamesPage = 1;
+        state.validatedGamesTotalPages = 2;
+      }
+    });
+
     builder.addCase(
       getValidatedGamesByGameID.fulfilled,
       (state, { payload }) => {
-        state.validatedGames = null;
+        state.allValidatedGameResults = null;
         if (payload && payload.data) {
-          state.validatedGames = payload.data?.data;
-          state.validatedGamesPage = payload.data?.pageNumber;
-          state.validatedGamesTotalPages = payload.data?.totalPages;
-          console.log("validatedGames", state.validatedGames);
+          state.allValidatedGameResults = payload.data?.data;
+          state.allValidatedGameResultsPage = payload.data?.pageNumber;
+          state.allValidatedGameResultsTotalPages = payload.data?.totalPages;
+          // console.log("allValidatedGameResults", state.allValidatedGameResults);
         } else {
-          state.validatedGames = [];
-          state.validatedGamesPage = 1;
-          state.validatedGamesTotalPages = 2;
+          state.allValidatedGameResults = [];
+          state.allValidatedGameResultsPage = 1;
+          state.allValidatedGameResultsTotalPages = 2;
         }
       }
     );
@@ -335,6 +365,9 @@ export const {
   setValidatedGames,
   setValidatedGamesPage,
   setValidatedGamesTotalPages,
+  setAllValidatedGameResults,
+  setAllValidatedGameResultsPage,
+  setAllValidatedGameResultsTotalPages,
 } = betSlice.actions;
 
 export default betSlice.reducer;

@@ -5,40 +5,42 @@ import { useSelector } from "react-redux";
 import { addComma } from "../../global/customFunctions";
 
 const AdminWalletOverview = () => {
-  const accountBalances = useSelector((state) => state.wallet.accountBalances);
+  const adminCounts = useSelector((state) => state.wallet.adminCounts);
 
   const [wallet, setWallet] = useState(null);
 
   useEffect(() => {
-    if (accountBalances) {
+    if (adminCounts) {
       setWallet([
         {
           id: 1,
           img: ps_promo,
-          title: "Total balance",
-          desc: addComma(accountBalances?.totalBalance),
+          title: "Total Game played",
+          desc: adminCounts?.totalPlayed,
         },
         {
           id: 2,
           img: ps_promo,
-          title: "Total Transactions",
-          desc: addComma(accountBalances?.winningBalance),
+          title: "Total Amount played",
+          desc: addComma(adminCounts?.totalAmmountPlayed),
         },
         {
           id: 3,
           img: ps_promo,
           title: "Total Winnings",
-          desc: addComma(accountBalances?.bonusAccount),
+          desc: addComma(adminCounts?.totalAmmountWon),
         },
-        {
-          id: 4,
-          img: ps_promo,
-          title: "Total Users",
-          desc: addComma(accountBalances?.bonusAccount),
-        },
+        // {
+        //   id: 4,
+        //   img: ps_promo,
+        //   title: "Total Users",
+        //   desc: adminCounts?.bonusAccount
+        //     ? addComma(adminCounts?.bonusAccount)
+        //     : 20,
+        // },
       ]);
     }
-  }, [accountBalances]);
+  }, [adminCounts]);
 
   return (
     <>

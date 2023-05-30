@@ -62,6 +62,8 @@ const DELETE_GAMETYPE_URL = "/v1.0/Game/deletegametype";
 const DELETE_GAME_URL = "/v1.0/Game/deletegame";
 const GET_ALL_GAMES_PLAYED_URL = "/v1.0/Game/Getallgamesplayed";
 const GET_VALIDATED_GAMES_BY_GAMEID_URL = "/v1.0/Game/ValidationResultbygameId";
+const GET_VALIDATED_GAMES_URL = "/v1.0/Game/validatedgames";
+const GET_ADMIN_COUNT_URL = "/v1.0/Game/totalamountplayedandwon";
 
 // OTHERS
 const ADD_TRANSACTION_PIN_URL = "/v1.0/PIN/addTransactionPIN";
@@ -126,4 +128,6 @@ export {
   VALIDATE_GAMES_URL,
   GET_ALL_GAMES_PLAYED_URL,
   GET_VALIDATED_GAMES_BY_GAMEID_URL,
+  GET_ADMIN_COUNT_URL,
+  GET_VALIDATED_GAMES_URL,
 };
