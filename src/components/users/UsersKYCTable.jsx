@@ -104,9 +104,12 @@ const UsersKYCTable = ({
                       )}
                     </td>
                     <td>
+                      {item?.kycDeclineReason ? item?.kycDeclineReason : "None"}
+                    </td>
+                    <td>
                       {item?.dateKycSubmitted
                         ? formateDateAndTimeByName(item?.dateKycSubmitted)
-                        : formateDateAndTimeByName(item?.lastLogin)}
+                        : "null"}
                     </td>
 
                     <td>
@@ -255,6 +258,14 @@ const UsersKYCTable = ({
                   <h4 className="">ID Number</h4>
                   <h4 className="">
                     <b>{item?.idNumber || "None"}</b>
+                  </h4>
+                </div>
+                <div className="d-block">
+                  <h4 className="">Message</h4>
+                  <h4 className="">
+                    <b>
+                      {item?.kycDeclineReason ? item?.kycDeclineReason : "None"}
+                    </b>
                   </h4>
                 </div>
                 <div className="d-flex justify-content-center mt-4">

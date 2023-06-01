@@ -31,6 +31,8 @@ const AdminVerifyKYCPage = () => {
     (state) => state.oauth.pendingKYCusersTotalPages
   );
 
+  // console.log(pendingKYCusers);
+
   const [isLoading, setIsLoading] = useState(false);
   const [clearSeasrchFilter, setClearSeasrchFilter] = useState(false);
 
@@ -51,7 +53,10 @@ const AdminVerifyKYCPage = () => {
       name: "Status",
     },
     {
-      name: "Date/Time",
+      name: "Message",
+    },
+    {
+      name: "Date/Time Submitted",
     },
 
     {

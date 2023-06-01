@@ -17,8 +17,9 @@ import AllBetPlayed from "../../components/bet/AllBetPlayed";
 const AdminGamesPlayed = () => {
   const dispatch = useDispatch();
   // const user = useSelector((state) => state.oauth.user);
+  const gamesgroup = useSelector((state) => state.bets.gamesgroup);
   const allGamesPlayed = useSelector((state) => state.bets.allGamesPlayed);
-  console.log("allGamesPlayed", allGamesPlayed);
+  // console.log("allGamesPlayed", allGamesPlayed);
   const allGamesPlayedPage = useSelector(
     (state) => state.bets.allGamesPlayedPage
   );
@@ -26,6 +27,7 @@ const AdminGamesPlayed = () => {
     (state) => state.bets.allGamesPlayedTotalPages
   );
 
+  const [selectedGame, setSelectedGame] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [clearSeasrchFilter, setClearSeasrchFilter] = useState(false);
 
@@ -71,6 +73,7 @@ const AdminGamesPlayed = () => {
 
   const fetchByPage = (type, page) => {
     const payload = {
+      groupId: selectedGame,
       pageNumber: page,
       pageSize: 10,
     };
@@ -81,6 +84,7 @@ const AdminGamesPlayed = () => {
 
   const previousPage = (type) => {
     const payload = {
+      groupId: selectedGame,
       pageNumber: allGamesPlayedPage - 1,
       pageSize: 10,
     };
@@ -92,6 +96,7 @@ const AdminGamesPlayed = () => {
 
   const nextPage = (type) => {
     const payload = {
+      groupId: selectedGame,
       pageNumber: allGamesPlayedPage + 1,
       pageSize: 10,
     };
@@ -151,6 +156,7 @@ const AdminGamesPlayed = () => {
   const handleFilter = () => {
     setClearSeasrchFilter(false);
     const payload = {
+      groupId: selectedGame || 0,
       pageNumber: 1,
       pageSize: 10,
     };
@@ -166,9 +172,19 @@ const AdminGamesPlayed = () => {
   }, [clearSeasrchFilter]);
 
   useEffect(() => {
+    if (selectedGame) {
+      handleFilter();
+    }
+  }, [selectedGame]);
+
+  useEffect(() => {
     return () => {
       document.querySelector(".content-body") &&
         document.querySelector(".content-body").scrollTo(0, 0);
+      if (allGamesPlayed && allGamesPlayed?.length <= 0) {
+        handleFilter();
+      }
+      // console.log("again", allGamesPlayed);
     };
   }, []);
 
@@ -180,7 +196,33 @@ const AdminGamesPlayed = () => {
             <h5 className="site_title">{"Games > Games played"}</h5>
           </div>
 
-          <div className="mt-5 w_inner">
+          <div className="row mt-5">
+            <div className="col-md-3">
+              <div className="form-group" style={{ width: "100%" }}>
+                <select
+                  style={{ width: "100%" }}
+                  className="form-control hasCapitalized"
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      setSelectedGame(e.target.value);
+                    }
+                  }}
+                  value={selectedGame}
+                >
+                  <option value="">Select game group</option>
+
+                  {gamesgroup &&
+                    gamesgroup?.map((item, index) => (
+                      <option key={index} value={item?.id}>
+                        {item?.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-3 w_inner">
             <div className="card mb-4">
               <AllBetPlayed
                 columns={columns}
@@ -193,7 +235,7 @@ const AdminGamesPlayed = () => {
                 PrevP={previousPage}
                 fetchByPage={fetchByPage}
                 columnSpan={10}
-                noDataText="No winnings"
+                noDataText="No game played"
                 onDelete={() => {}}
               />
             </div>

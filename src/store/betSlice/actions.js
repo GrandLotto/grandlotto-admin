@@ -183,6 +183,7 @@ export const getallgamesplayed = createAsyncThunk(
   "bets/Getallgamesplayed",
   async (payload, { getState, dispatch }) => {
     const newPayload = {
+      groupId: 0,
       pageNumber: 1,
       pageSize: 10,
     };
