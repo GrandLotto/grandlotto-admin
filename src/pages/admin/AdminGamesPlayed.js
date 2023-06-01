@@ -27,7 +27,7 @@ const AdminGamesPlayed = () => {
     (state) => state.bets.allGamesPlayedTotalPages
   );
 
-  const [selectedGame, setSelectedGame] = useState("");
+  const [selectedGame, setSelectedGame] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [clearSeasrchFilter, setClearSeasrchFilter] = useState(false);
 
@@ -204,12 +204,18 @@ const AdminGamesPlayed = () => {
                   className="form-control hasCapitalized"
                   onChange={(e) => {
                     if (e.target.value) {
+                      // if (selectedGame === e.target.value) {
+                      //   return;
+                      // }
                       setSelectedGame(e.target.value);
                     }
                   }}
                   value={selectedGame}
                 >
                   <option value="">Select game group</option>
+                  {gamesgroup && gamesgroup?.length ? (
+                    <option value={0}>All</option>
+                  ) : null}
 
                   {gamesgroup &&
                     gamesgroup?.map((item, index) => (
