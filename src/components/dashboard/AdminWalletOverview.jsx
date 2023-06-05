@@ -15,8 +15,14 @@ const AdminWalletOverview = () => {
         {
           id: 1,
           img: ps_promo,
-          title: "Total Game played",
-          desc: adminCounts?.totalPlayed,
+          title: "Total Games played",
+          desc: adminCounts?.totalGamesPlayed,
+        },
+        {
+          id: 1,
+          img: ps_promo,
+          title: "Total Games won",
+          desc: adminCounts?.totalGamesWon,
         },
         {
           id: 2,
@@ -27,7 +33,7 @@ const AdminWalletOverview = () => {
         {
           id: 3,
           img: ps_promo,
-          title: "Total Winnings",
+          title: "Total Amount won",
           desc: addComma(adminCounts?.totalAmmountWon),
         },
         // {

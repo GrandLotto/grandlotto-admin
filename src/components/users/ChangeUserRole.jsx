@@ -166,11 +166,11 @@ const ChangeUserRole = () => {
     );
 
     const payload = {
-      email: searchText,
+      email: userDetails?.email,
       role: selectedRole,
     };
 
-    // console.log(payload);
+    console.log(payload);
 
     handlePOSTRequest(ADD_USER_TO_ROLES_URL, payload)
       .then((response) => {
