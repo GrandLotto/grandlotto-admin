@@ -205,6 +205,17 @@ const AdminValidationResult = () => {
 
   useEffect(() => {
     return () => {
+      // console.log("here");
+      if (allValidatedGameResults) {
+        dispatch(setAllValidatedGameResults([]));
+        dispatch(setAllValidatedGameResultsPage(1));
+        dispatch(setAllValidatedGameResultsTotalPages(3));
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
       document.querySelector(".content-body") &&
         document.querySelector(".content-body").scrollTo(0, 0);
     };
