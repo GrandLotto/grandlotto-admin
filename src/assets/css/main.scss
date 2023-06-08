@@ -93,6 +93,32 @@ input[type="checkbox"]:checked {
   color: #fff !important;
 }
 
+.totalityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 25px 15px;
+  margin-bottom: 20px;
+  // margin-left: 10px;
+}
+
+.totalityItems {
+  border-top: 3px solid $primary;
+  background: #fff;
+  text-align: center;
+  padding: 12px 10px;
+  border-radius: 10px;
+}
+
+.totalityItems p {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.totalityItems h5 {
+  margin-top: 5px;
+  font-size: 15px;
+}
+
 @media screen and (max-width: 650px) {
   body {
     position: fixed !important;
@@ -109,5 +135,9 @@ input[type="checkbox"]:checked {
 
   .hideOnMobile {
     display: none !important;
+  }
+
+  .totalityGrid {
+    padding: 0px 10px;
   }
 }

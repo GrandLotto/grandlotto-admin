@@ -213,9 +213,9 @@ const AdminGamesPlayed = () => {
                   value={selectedGame}
                 >
                   <option value="">Select game group</option>
-                  {gamesgroup && gamesgroup?.length ? (
+                  {/* {gamesgroup && gamesgroup?.length ? (
                     <option value={0}>All</option>
-                  ) : null}
+                  ) : null} */}
 
                   {gamesgroup &&
                     gamesgroup?.map((item, index) => (

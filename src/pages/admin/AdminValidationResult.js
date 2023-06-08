@@ -12,15 +12,14 @@ import {
   setAlertPopUp,
   setAlertSmallPOPUP,
 } from "../../store/alert/alertSlice";
-import FilterModals from "../../components/modal/FilterModals";
 import AllBetPlayed from "../../components/bet/AllBetPlayed";
-import { formateDateAndTimeByName } from "../../global/customFunctions";
+import { formateDateByName } from "../../global/customFunctions";
+import { formatAMPM } from "../../global/customFunctions";
 
 const AdminValidationResult = () => {
   const dispatch = useDispatch();
   // const user = useSelector((state) => state.oauth.user);
-  const games = useSelector((state) => state.bets.allgames);
-
+  const validatedGames = useSelector((state) => state.bets.validatedGames);
   const allValidatedGameResults = useSelector(
     (state) => state.bets.allValidatedGameResults
   );
@@ -31,11 +30,13 @@ const AdminValidationResult = () => {
     (state) => state.bets.allValidatedGameResultsTotalPages
   );
   const [selectedGame, setSelectedGame] = useState("");
-  const [showFilter, setShowFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [previewGame, setPreviewGame] = useState(null);
   const [clearSeasrchFilter, setClearSeasrchFilter] = useState(false);
+  const [hasChanged, sethasChanged] = useState(false);
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+
+  // console.log("validatedGames", validatedGames);
 
   const columns = [
     {
@@ -79,11 +80,10 @@ const AdminValidationResult = () => {
 
   const fetchByPage = (type, page) => {
     const payload = {
-      gameId: selectedGame?.id,
+      gameId: selectedGame,
       pageNumber: page,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      date: !startDate ? null : startDate,
     };
     let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
 
@@ -92,11 +92,10 @@ const AdminValidationResult = () => {
 
   const previousPage = (type) => {
     const payload = {
-      gameId: selectedGame?.id,
+      gameId: selectedGame,
       pageNumber: allValidatedGameResultsPage - 1,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      date: !startDate ? null : startDate,
     };
 
     let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
@@ -106,11 +105,10 @@ const AdminValidationResult = () => {
 
   const nextPage = (type) => {
     const payload = {
-      gameId: selectedGame?.id,
+      gameId: selectedGame,
       pageNumber: allValidatedGameResultsPage + 1,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      date: !startDate ? null : startDate,
     };
 
     let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
@@ -137,6 +135,8 @@ const AdminValidationResult = () => {
           dispatch(setAllValidatedGameResults(allDatas));
           dispatch(setAllValidatedGameResultsPage(currentPage));
           dispatch(setAllValidatedGameResultsTotalPages(totalPages));
+
+          sethasChanged(false);
         } else {
           dispatch(setAllValidatedGameResultsPage(allValidatedGameResultsPage));
           dispatch(
@@ -170,44 +170,38 @@ const AdminValidationResult = () => {
   };
 
   const handleFilter = () => {
-    setShowFilter(false);
     setClearSeasrchFilter(false);
     const payload = {
       // gameId: 1,
-      gameId: selectedGame?.id,
+      gameId: selectedGame,
       pageNumber: 1,
       pageSize: 10,
-      startime: !startDate ? null : startDate,
-      endTime: !endDate ? null : endDate,
+      date: !startDate ? null : startDate,
     };
-    let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
 
+    // console.log("handleFilter", payload);
+    let url = GET_VALIDATED_GAMES_BY_GAMEID_URL;
+    setPreviewGame(null);
     fetchMore("", url, payload);
   };
-
-  const clearFilter = () => {
-    setStartDate("");
-    setEndDate("");
-    setClearSeasrchFilter(true);
-  };
-
-  useEffect(() => {
-    if (startDate && endDate) {
-      handleFilter();
-    }
-  }, [startDate, endDate]);
-
-  useEffect(() => {
-    if (selectedGame) {
-      handleFilter();
-    }
-  }, [selectedGame]);
 
   useEffect(() => {
     if (clearSeasrchFilter === true) {
       handleFilter();
     }
   }, [clearSeasrchFilter]);
+
+  useEffect(() => {
+    if (selectedGame && allValidatedGameResults && hasChanged === false) {
+      let oneSelected = validatedGames?.find(
+        (item) => item?.gameId === Number(selectedGame)
+      );
+      // console.log("oneSelected", oneSelected);
+      if (oneSelected) {
+        setPreviewGame(oneSelected);
+      }
+    }
+  }, [selectedGame, allValidatedGameResults, hasChanged]);
 
   useEffect(() => {
     return () => {
@@ -218,124 +212,115 @@ const AdminValidationResult = () => {
 
   return (
     <>
-      <FilterModals
-        status={showFilter}
-        setVisiblityStatus={setShowFilter}
-        modalTitle="Filter"
-      >
-        <div>
-          <div className="card mb-3">
-            <div className="card-header">
-              <h6 className="font-weight-bold">Date</h6>
-            </div>
-            <div className="card-body">
-              <div className="form-group mb-4">
-                <label htmlFor="">Start from</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      setStartDate(e.target.value);
-                    }
-                  }}
-                  value={startDate}
-                />
-              </div>
-              <div className="form-group mb-4">
-                <label htmlFor="">To</label>
-                <input
-                  type="date"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      setEndDate(e.target.value);
-                    }
-                  }}
-                  value={endDate}
-                  className="form-control"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </FilterModals>
       <div className="pages">
         <div className="pages_mobile_dark">
           <div className="d-flex justify-content-between pages_header">
             <h5 className="site_title">{"Games > Validation Results"}</h5>
           </div>
-          <div className="d-flex justify-content-end paddRightSmall">
-            <div
-              className="d-flex align-items-center mb-0"
-              style={{ columnGap: 10 }}
-            >
-              {(startDate || endDate) && (
-                <a
-                  href="true"
-                  className="has_link"
-                  style={{
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    clearFilter();
-                  }}
-                >
-                  Clear Filtering
-                </a>
-              )}
-              <button
-                className="grandLottoButton filterButton"
-                onClick={() => {
-                  setStartDate("");
-                  setEndDate("");
-                  setShowFilter(true);
-                }}
-              >
-                <span
-                  className="d-flex align-items-center"
-                  style={{ columnGap: 10 }}
-                >
-                  <i className="bx bx-slider"></i>
-                  <span>Filter</span>
-                </span>
-              </button>
-            </div>
-          </div>
 
-          <div className="row mt-2">
-            <div className="col-md-3">
-              <div className="form-group" style={{ width: "100%" }}>
-                <label htmlFor="" className="mb-3">
-                  Select Game
-                </label>
+          <form
+            className="mt-5 px-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (selectedGame && startDate) {
+                handleFilter();
+              }
+            }}
+          >
+            <div className="row ">
+              <div className="col-md-3">
+                <div className="form-group mb-4">
+                  <label htmlFor="">Date</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        setStartDate(e.target.value);
+                        sethasChanged(true);
+                      }
+                    }}
+                    value={startDate}
+                  />
+                </div>
+              </div>
 
-                <select
-                  style={{ width: "100%" }}
-                  className="form-control hasCapitalized"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      setSelectedGame(e.target.value);
-                    }
-                  }}
-                  value={selectedGame}
-                >
-                  <option value="">Select day</option>
+              <div className="col-md-3">
+                <div className="form-group" style={{ width: "100%" }}>
+                  <label htmlFor="">Select Game</label>
 
-                  {games &&
-                    games?.map((item, index) => (
-                      <option key={index} value={item?.id}>
-                        {item?.name} {""}(
-                        {formateDateAndTimeByName(item?.startTime)})
-                      </option>
-                    ))}
-                </select>
+                  <select
+                    style={{ width: "100%" }}
+                    className="form-control hasCapitalized"
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        setSelectedGame(e.target.value);
+                        sethasChanged(true);
+                      }
+                    }}
+                    value={selectedGame}
+                  >
+                    <option value="">Select Game</option>
+
+                    {validatedGames &&
+                      validatedGames?.map((item, index) => (
+                        <option key={index} value={item?.gameId}>
+                          {item?.gameName}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="mt-4"></div>
+
+                <button type="submit" className="grandLottoButton">
+                  Search
+                </button>
               </div>
             </div>
-          </div>
+          </form>
 
           <div className="mt-5 w_inner">
+            {previewGame &&
+            allValidatedGameResults &&
+            allValidatedGameResults?.length ? (
+              <div className="totalityGrid">
+                <div className="totalityItems">
+                  <p>Game ID</p>
+                  <h5>{previewGame?.gameId}</h5>
+                </div>
+                <div className="totalityItems">
+                  <p>Game Name</p>
+                  <h5>{previewGame?.gameName}</h5>
+                </div>
+                <div className="totalityItems">
+                  <p>Machine No</p>
+                  <h5>{previewGame?.machineNumber}</h5>
+                </div>
+                <div className="totalityItems">
+                  <p>Winning No</p>
+                  <h5>{previewGame?.winningNumbers}</h5>
+                </div>
+                <div className="totalityItems">
+                  <p>Draw Date</p>
+                  <h5>
+                    {previewGame?.dateValidated
+                      ? formateDateByName(previewGame?.dateValidated)
+                      : "none"}
+                  </h5>
+                </div>
+                <div className="totalityItems">
+                  <p>Draw Time</p>
+                  <h5>
+                    {previewGame?.dateValidated
+                      ? formatAMPM(previewGame?.dateValidated)
+                      : "none"}
+                  </h5>
+                </div>
+              </div>
+            ) : null}
+
             <div className="card mb-4">
               <AllBetPlayed
                 columns={columns}
