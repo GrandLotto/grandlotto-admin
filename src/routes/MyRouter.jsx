@@ -22,6 +22,7 @@ import LoginPage from "../pages/LoginPage";
 import AdminGamesPlayed from "../pages/admin/AdminGamesPlayed";
 import AdminValidatedGames from "../pages/admin/AdminValidatedGames";
 import AdminValidationResult from "../pages/admin/AdminValidationResult";
+import AdminSalesByGame from "../pages/admin/AdminSalesByGame";
 
 const MyRouter = () => {
   return (
@@ -69,6 +70,10 @@ const MyRouter = () => {
               <Route
                 path="/admin/games/validation-results"
                 element={<AdminValidationResult />}
+              />
+              <Route
+                path="/admin/games/sales-by-game"
+                element={<AdminSalesByGame />}
               />
               <Route
                 path="/admin/games/winnings"

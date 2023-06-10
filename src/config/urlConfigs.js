@@ -65,6 +65,7 @@ const GET_ALL_GAMES_PLAYED_URL = "/v1.0/Game/Getallgamesplayedbygamegroup";
 const GET_VALIDATED_GAMES_BY_GAMEID_URL = "/v1.0/Game/ValidationResultbygameId";
 const GET_VALIDATED_GAMES_URL = "/v1.0/Game/validatedgames";
 const GET_ADMIN_COUNT_URL = "/v1.0/Game/totalamountplayedandwon";
+const GET_REPORT_BY_GAME_URL = "/v1.0/Game/reportbygames";
 
 // OTHERS
 const ADD_TRANSACTION_PIN_URL = "/v1.0/PIN/addTransactionPIN";
@@ -131,4 +132,5 @@ export {
   GET_VALIDATED_GAMES_BY_GAMEID_URL,
   GET_ADMIN_COUNT_URL,
   GET_VALIDATED_GAMES_URL,
+  GET_REPORT_BY_GAME_URL,
 };

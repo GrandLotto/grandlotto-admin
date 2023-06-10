@@ -107,6 +107,11 @@ const Sidebar = () => {
                       </NavLink>
                     </li>
                     <li>
+                      <NavLink to="/admin/games/sales-by-game">
+                        <span>Sales by Game</span>
+                      </NavLink>
+                    </li>
+                    <li>
                       <NavLink to="/admin/games/winnings">
                         <span>Winnings</span>
                       </NavLink>

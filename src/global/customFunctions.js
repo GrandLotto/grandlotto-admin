@@ -685,3 +685,11 @@ export const formateWinningMachineNumbers = (numbers) => {
 
   return convertBackToString;
 };
+
+export const sumArryOfObjects = (arr, keyProps) => {
+  const sum = arr.reduce((accumulator, object) => {
+    return accumulator + object[keyProps];
+  }, 0);
+
+  return sum ? addComma(sum) : 0;
+};
