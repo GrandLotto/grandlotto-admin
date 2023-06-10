@@ -75,11 +75,11 @@ const Sidebar = () => {
                     </div>
                   </a>
                   <ul className="sidebar_links_children">
-                    {/* <li>
+                    <li>
                       <NavLink to="/admin/games/create-games-types">
                         <span>Games types</span>
                       </NavLink>
-                    </li> */}
+                    </li>
                     <li>
                       <NavLink to="/admin/games/create-games">
                         <span>Create games</span>

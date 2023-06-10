@@ -208,7 +208,7 @@ const CreategameTypeModal = () => {
               style={{ width: "100%", padding: 0 }}
             >
               <div className="row">
-                <div className="col-md-6 mb-4">
+                {/* <div className="col-md-6 mb-4">
                   <div className="form-group">
                     <label htmlFor="">Type</label>
                     <input
@@ -220,7 +220,7 @@ const CreategameTypeModal = () => {
                       style={{ width: "100%" }}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-6 mb-4">
                   <div className="form-group">
                     <label htmlFor="">Min Amount</label>
@@ -255,7 +255,7 @@ const CreategameTypeModal = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6 mb-4">
+                {/* <div className="col-md-6 mb-4">
                   <div className="form-group">
                     <label htmlFor="">Credit Line</label>
                     <input
@@ -267,8 +267,8 @@ const CreategameTypeModal = () => {
                       style={{ width: "100%" }}
                     />
                   </div>
-                </div>
-                <div className="col-md-6 mb-4">
+                </div> */}
+                {/* <div className="col-md-6 mb-4">
                   <div className="form-group">
                     <label htmlFor="">Max Number count</label>
                     <input
@@ -280,7 +280,7 @@ const CreategameTypeModal = () => {
                       style={{ width: "100%" }}
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="mt-4 text-center mb-3">
                 <div className="d-flex justify-content-center">

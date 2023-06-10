@@ -1,17 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import GameTypeTable from "../../components/bet/GameTypeTable";
 import {
+  setAlertPopUp,
   setConfirmModal,
   setCreategameTypeModal,
 } from "../../store/alert/alertSlice";
+import { GET_GAMES_TYPES_URL } from "../../config/urlConfigs";
+import { handleGETRequest } from "../../rest/apiRest";
 
 const AdminCreateGametypes = () => {
   const dispatch = useDispatch();
+  const gamesgroup = useSelector((state) => state.bets.gamesgroup);
   const gameTypes = useSelector((state) => state.bets.gameTypes);
 
   const [data, setData] = useState([]);
+  const [selectedGame, setSelectedGame] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const columns = [
     {
@@ -65,12 +72,57 @@ const AdminCreateGametypes = () => {
     );
   };
 
+  const fetchMore = (url) => {
+    setIsLoading(true);
+
+    // console.log(payload);
+
+    handleGETRequest(url)
+      .then((response) => {
+        setIsLoading(false);
+        // console.log(response);
+        if (response?.data?.success) {
+          let requestData = response?.data?.data;
+          setData(requestData);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setData([]);
+        dispatch(
+          setAlertPopUp({
+            status: true,
+            type: "ERROR",
+            title: "Error",
+            desc: "An error occurred, please try again",
+            payload: null,
+          })
+        );
+        // console.log(error);
+      });
+  };
+
+  const handleFilter = () => {
+    let url = GET_GAMES_TYPES_URL + `?gameGroupId=${selectedGame}`;
+
+    fetchMore(url);
+  };
+
   useEffect(() => {
     if (gameTypes) {
       // console.log(gameTypes);
-      setData(gameTypes);
+      handleFilter();
+      // setData(gameTypes);
     }
   }, [gameTypes]);
+
+  useEffect(() => {
+    if (selectedGame) {
+      handleFilter();
+    }
+  }, [selectedGame]);
 
   useEffect(() => {
     return () => {
@@ -85,7 +137,7 @@ const AdminCreateGametypes = () => {
         <div className="d-flex justify-content-between pages_header">
           <h5 className="site_title">{"Games > Create game types"}</h5>
         </div>
-        <div className="d-flex justify-content-end paddRightSmall">
+        {/* <div className="d-flex justify-content-end paddRightSmall">
           <div
             className="d-flex align-items-center mb-4"
             style={{ columnGap: 10 }}
@@ -105,6 +157,42 @@ const AdminCreateGametypes = () => {
               Create
             </button>
           </div>
+        </div> */}
+
+        <div className="row mt-5">
+          <div className="col-md-3">
+            <div className="form-group" style={{ width: "100%" }}>
+              <select
+                style={{ width: "100%" }}
+                className="form-control hasCapitalized"
+                onChange={(e) => {
+                  if (e.target.value) {
+                    // if (selectedGame === e.target.value) {
+                    //   return;
+                    // }
+                    setSelectedGame(e.target.value);
+                  }
+                }}
+                value={selectedGame}
+              >
+                <option value="" disabled>
+                  Select game group
+                </option>
+                {gamesgroup && gamesgroup?.length ? (
+                  <option value={1}>All</option>
+                ) : null}
+
+                {gamesgroup &&
+                  gamesgroup
+                    ?.filter((oldItem) => oldItem?.code === "310")
+                    ?.map((item, index) => (
+                      <option key={index} value={item?.id}>
+                        {item?.name}
+                      </option>
+                    ))}
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="mt-5 w_inner">
@@ -115,7 +203,7 @@ const AdminCreateGametypes = () => {
               page={1}
               totalPages={2}
               type="ADMIN"
-              isLoading={false}
+              isLoading={isLoading}
               hasPagination={false}
               nextP={() => {}}
               PrevP={() => {}}

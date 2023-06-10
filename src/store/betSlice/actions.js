@@ -86,9 +86,13 @@ export const getgamesplayingtype = createAsyncThunk(
   "bets/getgamesplayingtype",
   async (payload, { getState, dispatch }) => {
     try {
-      const result = axios.get(GET_GAMES_PLAYING_TYPES_URL).then((response) => {
-        return response.data;
-      });
+      const result = axios
+        .get(
+          GET_GAMES_PLAYING_TYPES_URL + `?gameGroupId=${payload ? payload : 1}`
+        )
+        .then((response) => {
+          return response.data;
+        });
 
       return result;
     } catch (error) {}

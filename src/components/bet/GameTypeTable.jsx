@@ -99,10 +99,10 @@ const GameTypeTable = ({
                           className="bx bx-pencil editBtnn"
                           onClick={() => onEdit(item)}
                         ></i>
-                        <i
+                        {/* <i
                           className="bx bx-trash-alt deleteBtnn"
                           onClick={() => onDelete(item)}
-                        ></i>
+                        ></i> */}
                       </div>
                     </td>
                   </tr>
@@ -203,10 +203,10 @@ const GameTypeTable = ({
                       className="bx bx-pencil editBtnn"
                       onClick={() => onEdit(item)}
                     ></i>
-                    <i
+                    {/* <i
                       className="bx bx-trash-alt deleteBtnn"
                       onClick={() => onDelete(item)}
-                    ></i>
+                    ></i> */}
                   </div>
                 </div>
               </div>
