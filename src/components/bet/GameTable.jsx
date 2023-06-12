@@ -115,6 +115,9 @@ const GameTable = ({
                     {/* <td>{item?.accountNumber}</td> */}
                     <td>{formateDateAndTimeByName(item?.startTime)}</td>
                     <td>{formateDateAndTimeByName(item?.endTime)}</td>
+                    <td>{item?.period}</td>
+                    <td>{item?.duration} mins</td>
+                    <td>{item?.frequency}</td>
 
                     <td>
                       <div

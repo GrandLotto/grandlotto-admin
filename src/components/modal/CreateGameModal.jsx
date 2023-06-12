@@ -25,6 +25,9 @@ const CreateGameModal = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [isAvailableToplay, setIsAvailableToplay] = useState(true);
+  const [period, setPeriod] = useState("");
+  const [duration, setDuration] = useState(30);
+  const [frequency, setFrequency] = useState(1);
 
   const [responseError, setResponseError] = useState("");
   const [emptyFields, setEmptyFields] = useState(true);
@@ -63,6 +66,47 @@ const CreateGameModal = () => {
     "SATURDAY",
   ];
 
+  const allPeriod = [
+    {
+      code: "Daily",
+      name: "Daily",
+    },
+    {
+      code: "Weekly",
+      name: "Weekly",
+    },
+  ];
+
+  const allDuration = [
+    {
+      name: "30 Mins",
+      code: 30,
+    },
+    {
+      name: "60 Mins",
+      code: 60,
+    },
+  ];
+
+  const allFrequency = [
+    {
+      name: "Once",
+      code: 1,
+    },
+    {
+      name: "Twice",
+      code: 2,
+    },
+    {
+      name: "3 Times",
+      code: 3,
+    },
+    {
+      name: "4 Times",
+      code: 4,
+    },
+  ];
+
   useEffect(() => {
     if (modal?.status) {
       if (modal?.payload) {
@@ -73,6 +117,9 @@ const CreateGameModal = () => {
         setStartTime(modal?.payload?.startTime);
         setEndTime(modal?.payload?.endTime);
         setselectedGameGroup(modal?.payload?.gameGroupId);
+        setPeriod(modal?.payload?.period);
+        setDuration(modal?.payload?.duration);
+        setFrequency(modal?.payload?.frequency);
 
         validateForm();
       }
@@ -88,6 +135,9 @@ const CreateGameModal = () => {
     startTime,
     isAvailableToplay,
     selectedGameGroup,
+    period,
+    frequency,
+    duration,
     emptyFields,
   ]);
 
@@ -105,6 +155,21 @@ const CreateGameModal = () => {
     //   setEmptyFields(true);
     //   return false;
     // }
+
+    if (!period) {
+      setEmptyFields(true);
+      return false;
+    }
+
+    if (!duration) {
+      setEmptyFields(true);
+      return false;
+    }
+
+    if (!frequency) {
+      setEmptyFields(true);
+      return false;
+    }
 
     if (!status) {
       setEmptyFields(true);
@@ -164,6 +229,9 @@ const CreateGameModal = () => {
       endTime: endTime,
       status: status,
       gameGroupId: selectedGameGroup,
+      period: period,
+      duration: parseInt(duration, 10),
+      frequency: parseInt(frequency, 10),
     };
 
     // console.log("payload", payload);
@@ -234,7 +302,7 @@ const CreateGameModal = () => {
 
   return (
     modal?.status && (
-      <div className="alert-modal alertPOP " id="loginModal">
+      <div className="alert-modal alertPOP large_modal" id="signupModal">
         <div className="alert-modal-overlay" onClick={() => closeModal()}></div>
         <div className="alert-modal-card vivify popInBottom">
           {isLoading && (
@@ -354,7 +422,83 @@ const CreateGameModal = () => {
                   </div>
                 </div> */}
 
-                <div className="col-md-12 mb-3">
+                <div className="col-md-6 mb-3">
+                  <div className="form-group">
+                    <label htmlFor="">Period</label>
+                    <select
+                      style={{ width: "100%" }}
+                      className="form-control hasCapitalized"
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setPeriod(e.target.value);
+                        }
+                      }}
+                      value={period}
+                    >
+                      <option value="">
+                        Determines is the game daily or weekly
+                      </option>
+
+                      {allPeriod?.map((item, index) => (
+                        <option key={index} value={item?.code}>
+                          {item?.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <div className="form-group">
+                    <label htmlFor="">Duration</label>
+                    <select
+                      style={{ width: "100%" }}
+                      className="form-control hasCapitalized"
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setDuration(e.target.value);
+                        }
+                      }}
+                      value={duration}
+                    >
+                      <option value="">How long is the game lasted</option>
+
+                      {allDuration?.map((item, index) => (
+                        <option key={index} value={item?.code}>
+                          {item?.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <div className="form-group">
+                    <label htmlFor="">Frequency</label>
+                    <select
+                      style={{ width: "100%" }}
+                      className="form-control hasCapitalized"
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setFrequency(e.target.value);
+                        }
+                      }}
+                      value={frequency}
+                    >
+                      <option value="">
+                        How many times is the game going to occur
+                      </option>
+                      <option value="" disabled>
+                        e.g once a week
+                      </option>
+
+                      {allFrequency?.map((item, index) => (
+                        <option key={index} value={item?.code}>
+                          {item?.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-6 mb-3">
                   <div className="form-group">
                     <label htmlFor="">Status</label>
                     <select

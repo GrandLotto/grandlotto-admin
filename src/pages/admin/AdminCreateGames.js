@@ -38,6 +38,18 @@ const AdminCreateGames = () => {
     },
 
     {
+      name: "Period",
+    },
+
+    {
+      name: "Duration",
+    },
+
+    {
+      name: "Frequency",
+    },
+
+    {
       name: "Action",
     },
   ];
