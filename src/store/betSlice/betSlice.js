@@ -14,12 +14,14 @@ import {
   getgamesgroup,
   getValidatedGamesByGameID,
   getValidatedgames,
+  getunvalidatedexpiredgames,
 } from "./actions";
 
 const initialState = {
   gamesgroup: null,
   allgames: null,
   games: null,
+  unvalidatedGames: null,
   allexistinggames: null,
   gameTypes: null,
   gamePlayingTypes: null,
@@ -266,6 +268,19 @@ const betSlice = createSlice({
         state.games = [];
       }
     });
+
+    builder.addCase(
+      getunvalidatedexpiredgames.fulfilled,
+      (state, { payload }) => {
+        state.unvalidatedGames = null;
+
+        if (payload.data) {
+          state.unvalidatedGames = payload.data;
+        } else {
+          state.unvalidatedGames = [];
+        }
+      }
+    );
 
     builder.addCase(getAllgames.fulfilled, (state, { payload }) => {
       state.allgames = null;

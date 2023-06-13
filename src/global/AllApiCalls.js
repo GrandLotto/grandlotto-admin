@@ -12,6 +12,7 @@ import {
   getallgamesplayed,
   getgamesgroup,
   getgamestype,
+  getunvalidatedexpiredgames,
   getValidatedgames,
   getWinningLogs,
 } from "../store/betSlice/actions";
@@ -78,6 +79,7 @@ const AllApiCalls = () => {
         );
         dispatch(getgamesgroup());
         dispatch(getAllgames());
+        dispatch(getunvalidatedexpiredgames());
         dispatch(getuserlist());
         dispatch(getkycpendingusers());
         dispatch(getAllroles());

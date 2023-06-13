@@ -13,6 +13,7 @@ import {
   GET_GAMES_WININNG_LOGS_URL,
   GET_GAME_WINNING_LOG_URL,
   GET_OPEN_GAMES_URL,
+  GET_UNVALIDATED_EXPIRED_GAMES_URL,
   GET_VALIDATED_GAMES_BY_GAMEID_URL,
   GET_VALIDATED_GAMES_URL,
 } from "../../config/urlConfigs";
@@ -50,6 +51,21 @@ export const getAllgames = createAsyncThunk(
       const result = axios.get(GET_ALL_GAMES_URL).then((response) => {
         return response.data;
       });
+
+      return result;
+    } catch (error) {}
+  }
+);
+
+export const getunvalidatedexpiredgames = createAsyncThunk(
+  "bets/getunvalidatedexpiredgames",
+  async (payload, { getState, dispatch }) => {
+    try {
+      const result = axios
+        .get(GET_UNVALIDATED_EXPIRED_GAMES_URL)
+        .then((response) => {
+          return response.data;
+        });
 
       return result;
     } catch (error) {}

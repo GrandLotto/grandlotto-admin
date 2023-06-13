@@ -44,6 +44,8 @@ const GET_CLOSED_GAMES_URL = "/v1.0/Game/Getuserclosedgameplayed";
 const GET_GAMES_GROUP_URL = "/v1.0/Game/getgamesgroup";
 const GET_GAMES_URL = "/v1.0/Game/getgames";
 const GET_ALL_GAMES_URL = "/v1.0/Game/getalgamesforadmin";
+const GET_UNVALIDATED_EXPIRED_GAMES_URL =
+  "/v1.0/Game/getunvalidatedexpiredgames";
 const PLAY_GAME_URL = "/v1.0/Game/playgames";
 const GET_GAMES_TYPES_URL = "/v1.0/Game/getgamestype";
 const GET_GAMES_PLAYING_TYPES_URL = "/v1.0/Game/getgamesplayingtype";
@@ -133,4 +135,5 @@ export {
   GET_ADMIN_COUNT_URL,
   GET_VALIDATED_GAMES_URL,
   GET_REPORT_BY_GAME_URL,
+  GET_UNVALIDATED_EXPIRED_GAMES_URL,
 };

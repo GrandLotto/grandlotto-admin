@@ -16,7 +16,7 @@ const AdminValidateGames = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.oauth.user);
-  const games = useSelector((state) => state.bets.allgames);
+  const games = useSelector((state) => state.bets.unvalidatedGames);
   const gamesgroup = useSelector((state) => state.bets.gamesgroup);
 
   const [pin, setPin] = useState("");
