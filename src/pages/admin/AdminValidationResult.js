@@ -306,13 +306,14 @@ const AdminValidationResult = () => {
                   <h5>{previewGame?.gameName}</h5>
                 </div>
                 <div className="totalityItems">
-                  <p>Machine No</p>
-                  <h5>{previewGame?.machineNumber}</h5>
-                </div>
-                <div className="totalityItems">
                   <p>Winning No</p>
                   <h5>{previewGame?.winningNumbers}</h5>
                 </div>
+                <div className="totalityItems">
+                  <p>Machine No</p>
+                  <h5>{previewGame?.machineNumber}</h5>
+                </div>
+
                 <div className="totalityItems">
                   <p>Draw Date</p>
                   <h5>
