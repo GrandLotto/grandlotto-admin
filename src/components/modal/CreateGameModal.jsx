@@ -26,8 +26,8 @@ const CreateGameModal = () => {
   const [endTime, setEndTime] = useState(new Date());
   const [isAvailableToplay, setIsAvailableToplay] = useState(true);
   const [period, setPeriod] = useState("");
-  const [duration, setDuration] = useState(30);
-  const [frequency, setFrequency] = useState(1);
+  // const [duration, setDuration] = useState(30);
+  // const [frequency, setFrequency] = useState(1);
 
   const [responseError, setResponseError] = useState("");
   const [emptyFields, setEmptyFields] = useState(true);
@@ -77,35 +77,35 @@ const CreateGameModal = () => {
     },
   ];
 
-  const allDuration = [
-    {
-      name: "30 Mins",
-      code: 30,
-    },
-    {
-      name: "60 Mins",
-      code: 60,
-    },
-  ];
+  // const allDuration = [
+  //   {
+  //     name: "30 Mins",
+  //     code: 30,
+  //   },
+  //   {
+  //     name: "60 Mins",
+  //     code: 60,
+  //   },
+  // ];
 
-  const allFrequency = [
-    {
-      name: "Once",
-      code: 1,
-    },
-    {
-      name: "Twice",
-      code: 2,
-    },
-    {
-      name: "3 Times",
-      code: 3,
-    },
-    {
-      name: "4 Times",
-      code: 4,
-    },
-  ];
+  // const allFrequency = [
+  //   {
+  //     name: "Once",
+  //     code: 1,
+  //   },
+  //   {
+  //     name: "Twice",
+  //     code: 2,
+  //   },
+  //   {
+  //     name: "3 Times",
+  //     code: 3,
+  //   },
+  //   {
+  //     name: "4 Times",
+  //     code: 4,
+  //   },
+  // ];
 
   useEffect(() => {
     if (modal?.status) {
@@ -118,8 +118,8 @@ const CreateGameModal = () => {
         setEndTime(modal?.payload?.endTime);
         setselectedGameGroup(modal?.payload?.gameGroupId);
         setPeriod(modal?.payload?.period);
-        setDuration(modal?.payload?.duration);
-        setFrequency(modal?.payload?.frequency);
+        // setDuration(modal?.payload?.duration);
+        // setFrequency(modal?.payload?.frequency);
 
         validateForm();
       }
@@ -136,8 +136,8 @@ const CreateGameModal = () => {
     isAvailableToplay,
     selectedGameGroup,
     period,
-    frequency,
-    duration,
+    // frequency,
+    // duration,
     emptyFields,
   ]);
 
@@ -161,15 +161,15 @@ const CreateGameModal = () => {
       return false;
     }
 
-    if (!duration) {
-      setEmptyFields(true);
-      return false;
-    }
+    // if (!duration) {
+    //   setEmptyFields(true);
+    //   return false;
+    // }
 
-    if (!frequency) {
-      setEmptyFields(true);
-      return false;
-    }
+    // if (!frequency) {
+    //   setEmptyFields(true);
+    //   return false;
+    // }
 
     if (!status) {
       setEmptyFields(true);
@@ -230,8 +230,8 @@ const CreateGameModal = () => {
       status: status,
       gameGroupId: selectedGameGroup,
       period: period,
-      duration: parseInt(duration, 10),
-      frequency: parseInt(frequency, 10),
+      // duration: parseInt(duration, 10),
+      // frequency: parseInt(frequency, 10),
     };
 
     // console.log("payload", payload);
@@ -447,7 +447,7 @@ const CreateGameModal = () => {
                     </select>
                   </div>
                 </div>
-                <div className="col-md-6 mb-3">
+                {/* <div className="col-md-6 mb-3">
                   <div className="form-group">
                     <label htmlFor="">Duration</label>
                     <select
@@ -497,7 +497,7 @@ const CreateGameModal = () => {
                       ))}
                     </select>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-6 mb-3">
                   <div className="form-group">
                     <label htmlFor="">Status</label>
