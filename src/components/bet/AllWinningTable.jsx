@@ -8,6 +8,7 @@ import {
 } from "../../global/customFunctions";
 import ComponentLoading from "../blocks/ComponentLoading";
 import PaginationBlock from "../blocks/PaginationBlock";
+import TableLoading2 from "../blocks/TableLoading2";
 
 const AllWinningTable = ({
   columns,
@@ -87,6 +88,8 @@ const AllWinningTable = ({
                   </tr>
                 ))}
               </tbody>
+            ) : data === null ? (
+              <TableLoading2 columnSpan={columnSpan} />
             ) : (
               <tbody>
                 <tr>

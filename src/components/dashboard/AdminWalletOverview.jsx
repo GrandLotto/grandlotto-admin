@@ -51,18 +51,32 @@ const AdminWalletOverview = () => {
   return (
     <>
       <div className="homeWalletOverview">
-        {wallet &&
-          wallet?.map((item, index) => (
-            <div key={index} className="homeWalletOverviewItem">
-              <div className="homeWalletOverviewItemImage">
-                <img src={item?.img} alt="grand-logo" />
+        {wallet
+          ? wallet?.map((item, index) => (
+              <div key={index} className="homeWalletOverviewItem">
+                <div className="homeWalletOverviewItemImage">
+                  <img src={item?.img} alt="grand-logo" />
+                </div>
+                <div>
+                  <h5>{item?.title}</h5>
+                  <h3>{item?.desc}</h3>
+                </div>
               </div>
-              <div>
-                <h5>{item?.title}</h5>
-                <h3>{item?.desc}</h3>
+            ))
+          : wallet === null &&
+            [1, 2, 3, 4]?.map((it) => (
+              <div key={it} className=" ">
+                <div
+                  className="is_loading"
+                  style={{ width: "100%", border: "2px solid #fff" }}
+                >
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
       </div>
     </>
   );

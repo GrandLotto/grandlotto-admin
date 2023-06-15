@@ -4,6 +4,7 @@ import { formateDateAndTimeByName } from "../../global/customFunctions";
 import ComponentLoading from "../blocks/ComponentLoading";
 import PaginationBlock from "../blocks/PaginationBlock";
 import { useSelector } from "react-redux";
+import TableLoading2 from "../blocks/TableLoading2";
 
 const GameTable = ({
   columns,
@@ -137,6 +138,8 @@ const GameTable = ({
                   </tr>
                 ))}
               </tbody>
+            ) : data === null ? (
+              <TableLoading2 columnSpan={columnSpan} />
             ) : (
               <tbody>
                 <tr>

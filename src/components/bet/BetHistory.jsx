@@ -9,6 +9,7 @@ import {
 } from "../../global/customFunctions";
 import ComponentLoading from "../blocks/ComponentLoading";
 import PaginationBlock from "../blocks/PaginationBlock";
+import TableLoading2 from "../blocks/TableLoading2";
 
 const BetHistory = ({
   columns,
@@ -125,6 +126,8 @@ const BetHistory = ({
                   </tr>
                 ))}
               </tbody>
+            ) : data === null ? (
+              <TableLoading2 columnSpan={9} />
             ) : (
               <tbody>
                 <tr>

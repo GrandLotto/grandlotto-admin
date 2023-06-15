@@ -336,7 +336,11 @@ const AdminValidationResult = () => {
             <div className="card mb-4">
               <AllBetPlayed
                 columns={columns}
-                data={allValidatedGameResults}
+                data={
+                  allValidatedGameResults === null
+                    ? []
+                    : allValidatedGameResults
+                }
                 page={allValidatedGameResultsPage}
                 totalPages={allValidatedGameResultsTotalPages}
                 type="ADMIN"
