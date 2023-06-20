@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sortArrayBy } from "../../global/customFunctions";
+import { sortArrayBy, sortArrayBy2 } from "../../global/customFunctions";
 import {
   Getuseropengameplayed,
   Getuserclosedgameplayed,
@@ -286,7 +286,7 @@ const betSlice = createSlice({
       state.allgames = null;
 
       if (payload.data) {
-        state.allgames = payload.data;
+        state.allgames = sortArrayBy2(payload.data, "dateCreated");
       } else {
         state.allgames = [];
       }
