@@ -41,13 +41,13 @@ const AdminCreateGames = () => {
       name: "Period",
     },
 
-    {
-      name: "Duration",
-    },
+    // {
+    //   name: "Duration",
+    // },
 
-    {
-      name: "Frequency",
-    },
+    // {
+    //   name: "Frequency",
+    // },
 
     {
       name: "Action",
